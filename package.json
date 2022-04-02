@@ -1,0 +1,16 @@
+{
+  "name": "gamcode",
+  "version": "1.0.0",
+  "description": "A differente repo.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "sergey --watch",
+    "start": "sergey"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "sergey": "^0.0.13"
+  }
+}

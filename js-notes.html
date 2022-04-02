@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- Highlight style sheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css"
+    integrity="sha512-Jk4AqjWsdSzSWCSuQTfYRIF84Rq/eV0G2+tu07byYwHcbTGfdmLrHjUSwvzp5HvbiqK4ibmNwdcG49Y5RGYPTg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Iconscout -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/notes.css">
+
+  <title>Notes-JS</title>
+</head>
+
+<body>
+  <sergey-import src="components/header" />
+  <main>
+    <section>
+      <header>
+        <h1 class="neon">Notas sobre JS</h1>
+      </header>
+      <!-- Tricks -->
+      <details>
+        <summary>
+          🪄 Trucos
+        </summary>
+        <ol>
+          <li>
+            <a href="#section-1">Encontrar el mayor y menor de un array de números sin loop</a>
+          </li>
+          <li>
+            <a href="#section-2">Generar un ID único sin dependencias</a>
+          </li>
+          <li>
+            <a href="#section-3">Eliminando espacios en Javascript</a>
+          </li>
+        </ol>
+      </details>
+      <!-- Utils -->
+      <details>
+        <summary>
+          📒 Utilidades
+        </summary>
+        <ol>
+          <li>
+            <a href="#section-4">Diferencia entre 🥊var vs 🥊let</a>
+          </li>
+          <li>
+            <a href="#section-5">Generar un ID único sin dependencias</a>
+          </li>
+          <li>
+            <a href="#section-6">Eliminando espacios en Javascript</a>
+          </li>
+        </ol>
+      </details>
+
+
+    </section>
+    <!-- --------------------- Tricks -------------------  -->
+    <!-- -------------- Trick 1 ------------ -->
+    <section id="section-1">
+      <header>
+        <h3>Encontrar el mayor y menor de un array de números sin loop</h3>
+      </header>
+      <sergey-import src="notes-js/trick-1" as="markdown" />
+    </section>
+    <!-- -------------- Trick 2 ------------ -->
+    <section id="section-2">
+      <header>
+        <h3>Generar un ID único sin dependencias</h3>
+      </header>
+      <sergey-import src="notes-js/trick-2" as="markdown" />
+    </section>
+    <!-- -------------- Trick 2 ------------ -->
+    <!-- -------------- Trick 3 ------------ -->
+    <section id="section-3">
+      <header>
+        <h3>Eliminando espacios en Javascript</h3>
+      </header>
+      <p>Un espacio en blanco puede ser un salto de línea, una tabulación o el mismo espacio en blanco</p>
+      <sergey-import src="notes-js/trick-3-p1" as="markdown" />
+      <p>Usando Regex tambíen se puede buscar espacios repetidos para convertirlos en sólo uno.</p>
+      <sergey-import src="notes-js/trick-3-p2" as="markdown" />
+      <p>El método replace de String hace que lo que encuentra lo sustituya por lo que le pasamos.</p>
+      <p>Con el mismo código podríamos eliminar todos los espacios del String.</p>
+      <sergey-import src="notes-js/trick-3-p3" as="markdown" />
+
+    </section>
+    <!-- -------------- Trick 3 ------------ -->
+
+
+
+  </main>
+  <button class="scroll-top-btn hidden">⬆</button>
+  <sergey-import src="cdn-function-highlightjs/highlightjs" />
+  <!-- Custom JS  -->
+  <script src="./../js/index.js" type="module"></script>
+</body>
+
+</html>
