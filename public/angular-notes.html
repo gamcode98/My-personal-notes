@@ -59,10 +59,27 @@
   </nav>
 </header>
   <main>
-    <h1 id="angular">Angular</h1>
-<h2 id="instalación-de-angular-cli">Instalación de Angular CLI</h2>
+    <section>
+      <header>
+        <h1 class="neon angular">Notas sobre Angular</h1>
+      </header>
+      <!-- Introduction -->
+      <details id="details-introduction">
+        <summary>
+          🏁 Introducción
+        </summary>
+        <ol>
+          <li>
+            <a href="">Instalación</a>
+          </li>
+        </ol>
+      </details>
+    </section>
+    <section id="introduction">
+      <h2 id="instalación">Instalación</h2>
+<h3 id="angular-cli">Angular CLI</h3>
 <pre><code class="language-console">npm i -g @angular/cli</code></pre>
-<h2 id="comandos-de-angular-para-correr-un-proyecto">Comandos de Angular para correr un proyecto</h2>
+<h3 id="comandos-de-angular-para-correr-un-proyecto">Comandos de Angular para correr un proyecto</h3>
 <ul>
 <li>Siguiente comando a ejecutar es : <code>ng version</code></li>
 <li>Comando para crear un proyecto: <code>ng new my-app</code></li>
@@ -590,13 +607,16 @@ export interface Product {
     console.log(this.register);
   }
 }</code></pre>
+    </section>
   </main>
-  <button class="scroll-top-btn hidden">⬆</button>
-  <!-- Highlight JS -->
+
+  <!-- Button scroll top -->
+<button class="scroll-top-btn hidden">⬆</button>
+<!-- Custom JS  -->
+<script src="./../js/index.js" type="module"></script>
+<!-- Highlight JS -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
-  <!-- Custom JS  -->
-  <script src="./../js/index.js" type="module"></script>
 </body>
 
 </html>

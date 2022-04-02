@@ -1,14 +1,30 @@
 @import "./settings.css";
 
+:root {
+  --js-color: #fede43;
+  --angular-color: #f3233b;
+}
+h1 {
+  font-size: 2rem;
+}
 h1,
 h2 {
   text-align: center;
 }
 .neon {
   color: var(--Text);
-  text-shadow: 0 0 5px #fede43, 0 0 10px #fede43, 0 0 20px #fede43,
-    0 0 40px #fede43, 0 0 80px #fede43, 0 0 90px #fede43, 0 0 100px #fede43,
-    0 0 150px #fede43;
+}
+.neon.js {
+  text-shadow: 0 0 5px var(--js-color), 0 0 10px var(--js-color),
+    0 0 20px var(--js-color), 0 0 40px var(--js-color), 0 0 80px var(--js-color),
+    0 0 90px var(--js-color), 0 0 100px var(--js-color),
+    0 0 150px var(--js-color);
+}
+.neon.angular {
+  text-shadow: 0 0 5px var(--angular-color), 0 0 10px var(--angular-color),
+    0 0 20px var(--angular-color), 0 0 40px var(--angular-color),
+    0 0 80px var(--angular-color), 0 0 90px var(--angular-color),
+    0 0 100px var(--angular-color), 0 0 150px var(--angular-color);
 }
 main {
   width: 95%;
@@ -23,8 +39,16 @@ summary {
 }
 summary + ol li a {
   color: var(--Text);
+  font-weight: 400;
 }
 summary + ol li a:hover {
+  text-decoration: underline;
+}
+section a {
+  color: var(--Text);
+  font-weight: 700;
+}
+section a:hover {
   text-decoration: underline;
 }
 pre {
@@ -41,6 +65,9 @@ pre.pre-html::before {
 }
 pre.pre-css::before {
   background-image: url("./../assets/images/css-3.svg");
+}
+pre.pre-console::before {
+  background-image: url("./../assets/images/terminal.svg");
 }
 
 @media screen and (min-width: 1024px) {

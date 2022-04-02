@@ -61,7 +61,7 @@
   <main>
     <section>
       <header>
-        <h1 class="neon">Notas sobre JS</h1>
+        <h1 class="neon js">Notas sobre JS</h1>
       </header>
       <!-- Tricks -->
       <details id="details-tricks">
@@ -87,13 +87,10 @@
         </summary>
         <ol>
           <li>
-            <!-- <a href="#section-4">Diferencia entre 🥊var vs 🥊let</a> -->
+            <a href="">Crear un modal nativo</a>
           </li>
           <li>
-            <!-- <a href="#section-5">Generar un ID único sin dependencias</a> -->
-          </li>
-          <li>
-            <!-- <a href="#section-6">Eliminando espacios en Javascript</a> -->
+            <a href="">Recuperar los datos de un formulario</a>
           </li>
         </ol>
       </details>
@@ -149,13 +146,52 @@ nombre.trimEnd(); // → &quot;    Gabriel&quot;</code></pre>
 // → &#39;Muchosespacios&#39;</code></pre>
     </section>
     <!-- --------------------- Tricks -------------------  -->
+    <!-- --------------------- Utils -------------------  -->
+    <section id="utils">
+      <h2 id="utilidades">Utilidades</h2>
+<h3 id="crear-un-modal-nativo-con-html">Crear un modal nativo con html</h3>
+<pre><code class="language-html">&lt;dialog&gt;
+  &lt;h1&gt;¿Sabías abrir modales así?&lt;/h1&gt;
+  &lt;p&gt;¡Y es totalmente nativo!&lt;/p&gt;
+  &lt;button id=&quot;cancel&quot;&gt;Cerrar&lt;/button&gt;
+&lt;/dialog&gt;
+
+&lt;button id=&quot;show&quot;&gt;Abrir modal&lt;/button&gt;</code></pre>
+<pre><code class="language-javascript">const d = document;
+const $dialog = d.querySelector(&quot;dialog&quot;);
+const $show = d.querySelector(&#39;#show&#39;)
+const $cancel d.querySelector(&#39;#cancel&#39;)
+
+$show.addEventListener(&#39;click&#39;, () = $dialog.showModal())
+$cancel.addEventListener(&#39;click&#39;, () = $dialog.close())</code></pre>
+<p>Ver ejemplo en la documentación de MDN: <a href="https://developer.mozilla.org/es/docs/Web/HTML/Element/dialog">modal</a></p>
+<h3 id="recuperar-los-datos-de-un-formulario">Recuperar los datos de un formulario</h3>
+<pre><code class="language-html">&lt;form&gt;
+  &lt;input type=&quot;email&quot; placeholder=&quot;Ingresa tu correo&quot; required /&gt;
+  &lt;br /&gt;
+  &lt;input type=&quot;password&quot; placeholder=&quot;Ingresa tu contraseña&quot; required /&gt;
+  &lt;br /&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Enviar&quot; /&gt;
+&lt;/form&gt;</code></pre>
+<pre><code class="language-javascript">const d = document;
+d.querySelector(&quot;form&quot;).addEventListener(&quot;submit&quot;, (e) =&gt; {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target));
+  alert(JSON.stringify(data));
+});</code></pre>
+    </section>
+    <!-- --------------------- Utils -------------------  -->
+
   </main>
-  <button class="scroll-top-btn hidden">⬆</button>
-  <!-- Highlight JS -->
+
+  <!-- Button scroll top -->
+<button class="scroll-top-btn hidden">⬆</button>
+<!-- Custom JS  -->
+<script src="./../js/index.js" type="module"></script>
+<!-- Highlight JS -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
-  <!-- Custom JS  -->
-  <script src="./../js/index.js" type="module"></script>
+
 </body>
 
 </html>

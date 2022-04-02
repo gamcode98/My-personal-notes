@@ -14,5 +14,8 @@ export default function notes() {
     if (el.classList.contains("language-css")) {
       el.parentElement.classList.add("pre-css");
     }
+    if (el.classList.contains("language-console")) {
+      el.parentElement.classList.add("pre-console");
+    }
   });
 }

@@ -1,12 +1,12 @@
-# Angular
+## Instalación
 
-## Instalación de Angular CLI
+### Angular CLI
 
 ```console
 npm i -g @angular/cli
 ```
 
-## Comandos de Angular para correr un proyecto
+### Comandos de Angular para correr un proyecto
 
 - Siguiente comando a ejecutar es : `ng version`
 - Comando para crear un proyecto: `ng new my-app`

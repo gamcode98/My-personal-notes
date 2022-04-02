@@ -12,7 +12,7 @@
   <main>
     <section>
       <header>
-        <h1 class="neon">Notas sobre JS</h1>
+        <h1 class="neon js">Notas sobre JS</h1>
       </header>
       <!-- Tricks -->
       <details id="details-tricks">
@@ -38,13 +38,10 @@
         </summary>
         <ol>
           <li>
-            <!-- <a href="#section-4">Diferencia entre 🥊var vs 🥊let</a> -->
+            <a href="">Crear un modal nativo</a>
           </li>
           <li>
-            <!-- <a href="#section-5">Generar un ID único sin dependencias</a> -->
-          </li>
-          <li>
-            <!-- <a href="#section-6">Eliminando espacios en Javascript</a> -->
+            <a href="">Recuperar los datos de un formulario</a>
           </li>
         </ol>
       </details>
@@ -54,11 +51,16 @@
       <sergey-import src="notes-js/tricks" as="markdown" />
     </section>
     <!-- --------------------- Tricks -------------------  -->
+    <!-- --------------------- Utils -------------------  -->
+    <section id="utils">
+      <sergey-import src="notes-js/utils" as="markdown" />
+    </section>
+    <!-- --------------------- Utils -------------------  -->
+
   </main>
-  <button class="scroll-top-btn hidden">⬆</button>
-  <sergey-import src="cdn-function-highlightjs/highlightjs" />
-  <!-- Custom JS  -->
-  <script src="./../js/index.js" type="module"></script>
+
+  <sergey-import src="functionalities/functionalities" />
+
 </body>
 
 </html>

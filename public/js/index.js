@@ -1,3 +1,4 @@
+import addExternalLink from "./addExternalLink.js";
 import scrollTopButton from "./boton_scroll.js";
 import notes from "./notes.js";
 import settingId from "./settingId.js";
@@ -11,5 +12,6 @@ d.addEventListener("DOMContentLoaded", (e) => {
   scrollTopButton(".scroll-top-btn");
   notes();
   settingId();
+  addExternalLink();
 });
 switchTheme();

@@ -10,12 +10,28 @@
 <body>
   <sergey-import src="components/header" />
   <main>
-    <sergey-import src="notes-angular/fundamentos" as="markdown" />
+    <section>
+      <header>
+        <h1 class="neon angular">Notas sobre Angular</h1>
+      </header>
+      <!-- Introduction -->
+      <details id="details-introduction">
+        <summary>
+          🏁 Introducción
+        </summary>
+        <ol>
+          <li>
+            <a href="">Instalación</a>
+          </li>
+        </ol>
+      </details>
+    </section>
+    <section id="introduction">
+      <sergey-import src="notes-angular/fundamentos" as="markdown" />
+    </section>
   </main>
-  <button class="scroll-top-btn hidden">⬆</button>
-  <sergey-import src="cdn-function-highlightjs/highlightjs" />
-  <!-- Custom JS  -->
-  <script src="./../js/index.js" type="module"></script>
+
+  <sergey-import src="functionalities/functionalities" />
 </body>
 
 </html>
