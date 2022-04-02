@@ -1,21 +1,13 @@
 const d = document;
-const $modal = d.getElementById("modal");
+const $modal = d.querySelector("dialog");
 const $links = d.querySelectorAll(".main a");
+const $close = d.getElementById("close");
 
-export default function showModal() {
-  $links.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      if (link.getAttribute("href") === "#") {
-        $modal.classList.add("modal-show");
-        e.preventDefault();
-      }
+$links.forEach((el) => {
+  if (el.getAttribute("href") === "#") {
+    el.addEventListener("click", () => {
+      $modal.showModal();
     });
-  });
-  d.addEventListener("click", (e) => {
-    if (e.target.matches(".btn-modal")) {
-      $modal.classList.remove("modal-show");
-    }
-    if (e.target.classList.contains("modal"))
-      $modal.classList.remove("modal-show");
-  });
-}
+  }
+});
+$close.addEventListener("click", () => $modal.close());

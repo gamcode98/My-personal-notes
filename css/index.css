@@ -45,31 +45,18 @@
 }
 /* Modal */
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  transform: scale(0);
-  transition: transform 0.3s;
+  border: none;
+  border-radius: 0.4rem;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--bg-color-main);
+  color: var(--Text);
 }
 
-.modal-content {
-  background-color: var(--bg-color-main);
-  width: 70vw;
-  height: 40vh;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 0.3rem;
-}
 .modal-paraph {
   text-align: center;
+  color: var(--Text);
 }
 .btn-modal {
   border: none;
@@ -79,13 +66,13 @@
   color: var(--Text);
   background-color: var(--Blue-Card-BG);
   cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .btn-modal:hover {
   transition: transform 0.3s;
-  transform: scale(1.03);
-}
-.modal-show {
-  transform: scale(1);
+  transform: scale(1.1);
 }
 
 @media screen and (min-width: 500px) {
@@ -137,8 +124,7 @@
   .card-link:hover {
     transform: scale(1.05);
   }
-  .modal-content {
-    width: 20%;
-    height: 200px;
+  .modal {
+    width: 40%;
   }
 }

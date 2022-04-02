@@ -1,6 +1,7 @@
 @import "./settings.css";
 
-h1 {
+h1,
+h2 {
   text-align: center;
 }
 .neon {
@@ -26,8 +27,20 @@ summary + ol li a {
 summary + ol li a:hover {
   text-decoration: underline;
 }
+pre {
+  margin-bottom: 2rem;
+}
 pre.pre-js::before {
   background-image: url("./../assets/images/javascript.svg");
+}
+pre.pre-ts::before {
+  background-image: url("./../assets/images/typescript-icon.svg");
+}
+pre.pre-html::before {
+  background-image: url("./../assets/images/html-5.svg");
+}
+pre.pre-css::before {
+  background-image: url("./../assets/images/css-3.svg");
 }
 
 @media screen and (min-width: 1024px) {
