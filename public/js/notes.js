@@ -5,7 +5,7 @@ export default function notes() {
     if (el.classList.contains("language-javascript")) {
       el.parentElement.classList.add("pre-js");
     }
-    if (el.classList.contains("language-TypeScript")) {
+    if (el.classList.contains("language-typescript")) {
       el.parentElement.classList.add("pre-ts");
     }
     if (el.classList.contains("language-html")) {

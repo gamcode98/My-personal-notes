@@ -3,6 +3,11 @@
 :root {
   --js-color: #fede43;
   --angular-color: #f3233b;
+  --typescript-color: #007cc8;
+}
+ul {
+  list-style: initial;
+  padding-left: initial;
 }
 h1 {
   font-size: 2rem;
@@ -25,6 +30,12 @@ h2 {
     0 0 20px var(--angular-color), 0 0 40px var(--angular-color),
     0 0 80px var(--angular-color), 0 0 90px var(--angular-color),
     0 0 100px var(--angular-color), 0 0 150px var(--angular-color);
+}
+.neon.typescript {
+  text-shadow: 0 0 5px var(--typescript-color), 0 0 10px var(--typescript-color),
+    0 0 20px var(--typescript-color), 0 0 40px var(--typescript-color),
+    0 0 80px var(--typescript-color), 0 0 90px var(--typescript-color),
+    0 0 100px var(--typescript-color), 0 0 150px var(--typescript-color);
 }
 main {
   width: 95%;
@@ -51,6 +62,10 @@ section a {
 section a:hover {
   text-decoration: underline;
 }
+img {
+  width: 100%;
+  display: block;
+}
 pre {
   margin-bottom: 2rem;
 }
@@ -69,9 +84,16 @@ pre.pre-css::before {
 pre.pre-console::before {
   background-image: url("./../assets/images/terminal.svg");
 }
-
+@media screen and (min-width: 768px) {
+  img {
+    width: 70%;
+  }
+  main {
+    width: 90%;
+  }
+}
 @media screen and (min-width: 1024px) {
   main {
-    width: 70%;
+    width: 50%;
   }
 }

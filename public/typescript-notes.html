@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Iconscout -->
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="./css/notes.css">
+<!-- Highlight style sheet -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css"
+  integrity="sha512-Jk4AqjWsdSzSWCSuQTfYRIF84Rq/eV0G2+tu07byYwHcbTGfdmLrHjUSwvzp5HvbiqK4ibmNwdcG49Y5RGYPTg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+<title>Notes-TypeScript</title>
+</head>
+
+<body>
+
+  <header class="header">
+  <div class="header-menu">
+    <a href="./index.html" class="nav-logo">Gamcode</a>
+    <div class="header-btns">
+      <a href="#" title="Theme" id="icon-theme">
+        <i class="uil uil-moon icon-img"></i>
+      </a>
+      <a href="#" title="Menu" id="icon-menu">
+        <i class="uil uil-apps icon-img"></i>
+      </a>
+    </div>
+  </div>
+  <nav class="nav-menu">
+    <ul class="nav-items">
+      <li>
+        <a href="#" title="Buy me a coffee">
+          <i class="uil uil-coffee icon-img"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" title="Portfolio">
+          <i class="uil uil-suitcase icon-img"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" title="GitHub">
+          <i class="uil uil-github icon-img"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" title="Linkedin">
+          <i class="uil uil-linkedin icon-img"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+  <main>
+
+    <section>
+      <header>
+        <h1 class="neon typescript">TypeScript</h1>
+      </header>
+      <!-- Fundamentals -->
+      <details id="details-tricks">
+        <summary>
+          🏁 Fundamentos
+        </summary>
+        <ol>
+          <li>
+            <a href="">Encontrar el mayor y menor de un array de números sin loop</a>
+          </li>
+        </ol>
+      </details>
+    </section>
+    <section>
+      <h2 id="fundamentos">Fundamentos</h2>
+<h3 id="¿que-es-typescript">¿Que es TypeScript?</h3>
+<ul>
+<li>Lenguaje de programación tipado</li>
+<li>Lenguaje de alto nivel</li>
+<li>Genera como resultado código JavaScript</li>
+<li>Código abierto</li>
+<li>Desarrollo en cualquier sistema operativo</li>
+<li>El código puede ejecutarse en cualquier navegador o plataforma</li>
+</ul>
+<h3 id="si-conoces-javascript-conoces-typescript">Si conoces JavaScript conoces TypeScript</h3>
+<p><img src="./../../../assets/images/notes-typescript-1.png" alt="JavaScriptAndTypeScript"></p>
+<h3 id="¿por-qué-usar-typescript">¿Por qué usar TypeScript?</h3>
+<ul>
+<li>Programación orientada a objetos</li>
+<li>Potencia el código JavaScript</li>
+<li>Mayor productividad</li>
+<li>Poderoso sistema de tipos</li>
+<li>Compila a ES5, ES6 y más</li>
+<li>Proyecto muy activo/<em>Open Source</em></li>
+<li>Actualizaciones periódicas</li>
+<li>Comunidad creciente</li>
+</ul>
+<h3 id="se-puede-usar-tanto-como-en-el-frontend-como-en-el-backend">Se puede usar tanto como en el frontend como en el backend</h3>
+<p><img src="./../../assets/images/notes-typescript-2.png" alt="typescript"></p>
+<h3 id="instalación-del-compilador-de-typescript">Instalación del compilador de TypeScript</h3>
+<pre><code class="language-console">npm install -g typescript</code></pre>
+<p>Para verificar que está correctamente instala se usa el comando</p>
+<pre><code class="language-console">tsc --version</code></pre>
+<h3 id="usando-el-compilador-de-typescript">Usando el compilador de TypeScript</h3>
+<p><img src="./../../assets/images/notes-typescript-3.png" alt="Compilador de TypeScript"></p>
+<p>De manera práctica se puede ejecutar</p>
+<pre><code class="language-console">tsc hello.ts
+ls
+hello.js    hello.ts</code></pre>
+<p>Ahora se necesita un runtime de JavaScript que es quien va a ejecutar el código JavaScript resultante</p>
+<pre><code class="language-console">node hello.js</code></pre>
+<p>El compilador de TypeScript tiene una opción que permite registrar los cambios.</p>
+<pre><code class="language-console">tsc --watch hello.ts</code></pre>
+<h3 id="el-archivo-de-configuración-de-typescript">El archivo de configuración de TypeScript</h3>
+<p>¿Qué es el archivo de configuración <strong>tsconfig.js</strong>?</p>
+<ul>
+<li>Especifica la raíz de un proyecto TypeScript</li>
+<li>Permite configurar opciones para el compilador</li>
+</ul>
+<h3 id="generación-del-archivo-tsconfigjson">Generación del archivo tsconfig.json</h3>
+<p>Se ejecuta el siguiente comando:</p>
+<pre><code class="language-console">tsc --init</code></pre>
+<p>El archivo consta de un objeto <strong>json</strong></p>
+<pre><code class="language-json">{
+  &quot;extends&quot;: &quot;./configs/base&quot;, //-&gt; Se usa para heredar las configuraciones de un archivo json general
+  &quot;compileOnSave&quot;: true, //-&gt;Seusa para que cada vez que se guarde un archivo se compile el código automaticamente
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;es2016&quot;, //-&gt; Especifica la versión de ES
+    &quot;module&quot;: &quot;commonjs&quot;, //-&gt; Especifica la configuración para generación de modulos
+    &quot;esModuleInterop&quot;: true,
+
+    &quot;forceConsistentCasingInFileNames&quot;: true,
+
+    &quot;strict&quot;: true, //-&gt; Hablita la verificación estricta de tipos
+
+    &quot;skipLibCheck&quot;: true,
+    &quot;removeComments&quot;: true //-&gt; Permite eliminar los comentarios al codigo fuente
+  },
+  &quot;include&quot;: [&quot;src/**/*.ts&quot;], //-&gt; Indica que archivos van a ser procesados por ek compilador
+  &quot;exclude&quot;: [&quot;node_modules&quot;, &quot;**/*.test.ts&quot;] //-&gt;Excluye archicos o directorios del preceso de compilación
+}</code></pre>
+<h3 id="usando-el-archivo-tsconfigjson">Usando el archivo tsconfig.json</h3>
+<pre><code class="language-console">tsc ------------------&gt; Busca la configuración
+tsc --project gamcode --------&gt; Especifica un directorio que contiene la configuración
+tsc files.ts ------------------&gt; Omite la configuración</code></pre>
+<h3 id="tipado-en-typescript">Tipado en TypeScript</h3>
+<ul>
+<li>Explícito<ul>
+<li>Define una sintaxis para la creación de variables con tipo de dato.</li>
+</ul>
+</li>
+<li>Inferido<ul>
+<li>TypeScript tiene la habilidad de &quot;deducir&quot; el tipo en función de un valor</li>
+</ul>
+</li>
+</ul>
+<p>Tipado en TypeScript <strong>Explícito</strong></p>
+<p><img src="./../../assets/images/notes-typescript-4.png" alt="typescript"></p>
+<p>Tipado en TypeScript <strong>Implícito</strong></p>
+<p><img src="./../../assets/images/notes-typescript-5.png" alt="typescript"></p>
+<h3 id="tipos-básicos">Tipos básicos</h3>
+<p>Tipos de datos simples en TypeScript</p>
+<h4 id="tipos-primitivos">Tipos primitivos</h4>
+<p><img src="./../../assets/images/notes-typescript-6.png" alt="typescript"></p>
+<h4 id="number">Number</h4>
+<pre><code class="language-typescript">//declaración explícita
+let phone: number;
+phone = 5;
+phone = &quot;hola&quot;; //-&gt; Error
+
+//declaración inferida
+let phoneNumber = 2; //-&gt; Al hacer hover sobre la variable se puede ver que typeScript le asigna un tipo
+phoneNumber = 232;
+phoneNumber = true; //-&gt; Error</code></pre>
+<h4 id="boolean">Boolean</h4>
+<pre><code class="language-typescript">let isPro: boolean;
+isPro = false;</code></pre>
+<h4 id="string">String</h4>
+<pre><code class="language-typescript">let username: string = &quot;gamcode&quot;;
+//Con template string
+let userInfo: string = `${username} este es mi username`;</code></pre>
+<h3 id="any-void-y-never">Any, Void y Never</h3>
+<h4 id="tipo-any">Tipo: Any</h4>
+<ul>
+<li>Usado para capturar valores dinámicos</li>
+<li>Los valores pueden cambiar de tipo en el tiempo:<ul>
+<li>APIs externas</li>
+<li>Librerías de terceros</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Se lo usa como último recurso, no es buena práctica.</p>
+</blockquote>
+<pre><code class="language-typescript">let idUser: any = 1;
+idUser = &quot;1&quot;; // -&gt; No da error
+console.log(&quot;idUser&quot;, idUser);</code></pre>
+<h4 id="tipo-void">Tipo: Void</h4>
+<ul>
+<li><strong>void</strong> es lo opuesto de <strong>any</strong>: representa la ausencia de tipo</li>
+<li>Comúnmente se usa como tipo de retorno en funciones (en la declaración de las mismas)</li>
+<li>Tambien se las utiliza cuando las funciones no retornan ningún valor</li>
+</ul>
+<pre><code class="language-typescript">//Any
+function showInfo(user: any): any {
+  console.log(&quot;User info&quot;, user.id, user.username, user.firstName);
+  //return &quot;hola&quot;; -&gt; Si tuviera el return estaría devolviendo ese estring
+}
+showInfo({ id: 1, username: &quot;gamcode&quot;, firstName: &quot;gabriel&quot; });</code></pre>
+<h4 id="tipo-void-como-tipo-de-dato-en-variable">Tipo void, como tipo de dato en variable</h4>
+<pre><code class="language-typescript">let unusable: void;
+unusable = null;
+unusable = undefined;
+
+//Hay que deshabilitar el modo strict de tsconfig.json</code></pre>
+<h4 id="tipo-never">Tipo: Never</h4>
+<ul>
+<li>Representa el tipo de valor que nunca ocurre<ul>
+<li>Funciones que lanzan exepciones</li>
+<li>Funciones que nunca retornan un valor</li>
+<li>Funciones con ciclos infinitos, que no permiten que se finalice</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-typescript">//Never
+function handleError(code: number, message: string): never {
+  //Proceso de codigo aqui
+  //Se genera un mensaje
+  throw new Error(`${message}. Code: ${code}`);
+}
+try {
+  handleError(404, &quot;Not Found&quot;);
+} catch (error) {}</code></pre>
+<h3 id="null-y-undefined">Null y Undefined</h3>
+<ul>
+<li>En TypeScript, ambos &quot;valores&quot; tienen sus respectivos:<ul>
+<li><strong>null</strong></li>
+<li><strong>undefined</strong></li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-typescript">let nullVariable: null;
+nullVariable = null;
+nullVariable = 1; // Error</code></pre>
+<pre><code class="language-typescript">let undefinedVariable: undefined;
+undefinedVariable = undefined;
+undefinedVariable = 1; // Error</code></pre>
+<h4 id="null-y-undefined-como-subtipos">Null y Undefined como subtipos</h4>
+<ul>
+<li>Null y Undefined se pueden asumir como subtipos de los otros tipos de datos, por ejemplo <strong>any</strong></li>
+<li>Significa que se puede asignar <strong>null</strong> y <strong>undefined</strong> a una variable de tipo <strong>string</strong>, por ejemplo</li>
+</ul>
+<pre><code class="language-typescript">let albumName: string;
+albumName = null;
+albumName = undefined;
+//Error hay que descomentar la linea en la aparece la opción &quot;strictNullChecks en el archivo tsconfig.json para que lo permita</code></pre>
+<h4 id="null-y-undefined-la-opción---strictnullchecks">Null y Undefined: La opción --strictNullChecks</h4>
+<ul>
+<li>Solo permite asignar <strong>null</strong> y <strong>undefined</strong> a una variable de tipo <strong>any</strong> o sus tipos respectivos.</li>
+<li>Ayuda a evitar errores comunes en programción de apps en el ámbito JavaScript.</li>
+</ul>
+<p>Otra opción es usar la bandera <strong>--strictNullChecks</strong> en la terminal:</p>
+<pre><code class="language-console">tsc --watch src/main.ts --strictNullChecks</code></pre>
+<h3 id="object">Object</h3>
+<h4 id="tipo-object">Tipo: object</h4>
+<ul>
+<li><strong>object</strong> es el tipo de dato que representa un valor no primitivo.</li>
+<li>Es el tipo de variable que no sea number, string, boolean, null, undefined, etc.</li>
+</ul>
+<pre><code class="language-typescript">let user: object = {};
+user = {
+  id: 1,
+  username: gamcode,
+};
+console.log(&quot;user.username&quot;, user.username); //Error</code></pre>
+<h4 id="object-vs-object">Object vs object</h4>
+<ul>
+<li><strong>Object</strong>: instancia de la clase Object de JavaScript</li>
+<li><strong>object</strong>: tipo de valores no primitivos. Con este tipo no se puede acceder a las propiedades del objeto.</li>
+</ul>
+<pre><code class="language-typescript">//Object vs object (Clase JS vs tipo TS)
+const myObj = {
+  id: 1,
+  username: gamcode,
+};
+
+const isInstance = myObj instanceof Object; // retorna true o false
+console.log(&quot;isInstance&quot;, isInstance);
+console.log(&quot;myObj.username&quot;, myObj.username); //Ok</code></pre>
+<h3 id="array">Array</h3>
+<ul>
+<li>Al igual que JavaScript, TypeScript permite definir un arreglo para contener un conjunto de valores.</li>
+<li>Usa dos notaciones: <strong>[]</strong> y <strong>Array&lt;tipo&gt;</strong></li>
+</ul>
+<pre><code class="language-typescript">//Corchetes []
+
+let users: string[];
+users = [&quot;Gabriel&quot;, &quot;Alejandro&quot;];
+users = [true, 1, &quot;Alejandro&quot;]; // Error
+
+//Array&lt;TIPO&gt;
+//&lt;&gt; -&gt; Se conocen como genéricos
+let pictureTtiles: Array&lt;string&gt;;
+pictureTtiles = [&quot;michi&quot;, &quot;pachicha&quot;];
+
+//Accediendo a los valores en un Array
+console.log(&quot;first user&quot;, users[0]);
+console.log(&quot;first title&quot;, pictureTtiles[0]);
+
+//Propiedades en Array
+console.log(&quot;users.length&quot;, users.length);
+
+//Uso de funciones en Arrays
+console.log(users.push(&quot;lolo&quot;));
+console.log(users.sort());
+console.log(&quot;users&quot;, users);</code></pre>
+<h3 id="tuple">Tuple</h3>
+<ul>
+<li>Las tuplas permiten expresar un arreglo con un número fijo de elementos.</li>
+<li>Los tipos de datos son conocidos.</li>
+</ul>
+<pre><code class="language-typescript">// [1,&quot;user&quot;]
+let user: [number, string];
+user = [1, &quot;gamcode&quot;];
+
+console.log(&quot;user&quot;, user);
+console.log(&quot;username&quot;, user[1]);
+console.log(&quot;username.length&quot;, user[1].length);
+console.log(&quot;id&quot;, user[0]);
+
+//Tuplas con varios valores
+//id, username, isPro
+let userInfo: [number, string, boolean];
+userInfo = [2, &quot;gamcode&quot;, true];
+console.log(&quot;userInfo&quot;, userInfo);
+
+//Arreglo de tuplas
+let array: [number, string][] = [];
+array.push([1, &quot;michi&quot;]);
+array.push([2, &quot;lolo&quot;]);
+array.push([3, &quot;lensQueen&quot;]);
+array.push([4, &quot;pepe&quot;]);
+array.push([5, &quot;lore&quot;]);
+console.log(&quot;array&quot;, array);
+
+//Uso de funciones Array
+//lensQueen -&gt; lensQueen001
+array[2][1] = array[2][1].concat(&quot;001&quot;);
+console.log(&quot;array&quot;, array);
+console.log(array[2][1]);</code></pre>
+<h3 id="enum">Enum</h3>
+<ul>
+<li>Los enumerados permiten definir un conjunto de constantes con nombre.</li>
+<li>Tienen la ventaja de adaptarse al contexto de la aplicación.</li>
+</ul>
+<pre><code class="language-typescript">// Orientacion para fotografias
+
+//En JS
+// const landscape = 0;
+// const portrait = 1;
+// const square = 2;
+// const panorama = 3;
+
+//En TS
+enum PhotoOrientation {
+  Landscape = 0, //De forma explicita
+  Portrait, //1 De forma implicita
+  Square, //2
+  Panorama, //3
+}
+const landscape: PhotoOrientation = PhotoOrientation.Landscape;
+console.log(&quot;landscape&quot;, landscape); // -&gt; muestra el num 0
+console.log(&quot;Landscape&quot;, PhotoOrientation[landscape]);
+
+//Personalización de enums
+enum PictureOrientation {
+  Landscape = 10,
+  Portrait, //11
+  Square, //12
+  Panorama, //13
+}
+console.log(&quot;portrait&quot;, PictureOrientation.Portrait); // muestra el num 11
+
+//Se considera las claves para personalizar
+enum Country {
+  Argentina = &quot;arg&quot;,
+  Colombia = &quot;col&quot;,
+  Mexico = &quot;mex&quot;,
+  EEUU = &quot;usa&quot;,
+  Espana = &quot;esp&quot;,
+}
+const country: Country = Country.Colombia;
+console.log(&quot;country&quot;, country);</code></pre>
+<h3 id="unión-de-tipos-alias-y-tipos-literales">Unión de Tipos, Alias y Tipos Literales</h3>
+<h4 id="unión-de-tipos">Unión de tipos</h4>
+<ul>
+<li>En TypeScript se puede definir una variable con múltiples tipos de datos: <em>Union Type</em>.</li>
+<li>Se usa el símbolo de pipe (&quot;<strong>|</strong>&quot;) entre los tipos.</li>
+</ul>
+<pre><code class="language-typeScript">// 10, &quot;10&quot;, -&gt; Debe soportar numeros y cadenas
+let idUser: number | string;
+idUser = 10;
+idUser = &quot;10&quot;;
+
+//Buscar username dado un ID
+
+function getUserNameById(id: number | string){
+  // Logica de negocio, find the user
+  return &quot;gamcode&quot;;
+}
+
+getUserNameById(20);
+getUserNameById(&quot;20&quot;);</code></pre>
+<h4 id="alias-de-tipos">Alias de tipos</h4>
+<ul>
+<li>TypeScript permite crear un alias como nuevo nombre para un tipo.</li>
+<li>El alias se puede aplicar también a un conjunto o combinación de tipos.</li>
+<li>Se usa la palabra reservada <strong>type</strong></li>
+</ul>
+<pre><code class="language-typeScript">// 10, &quot;10&quot;, -&gt; Debe soportar numeros y cadenas
+type IdUser = number | string;
+type Username = string;
+let idUser: IdUser;
+idUser = 10;
+idUser = &quot;10&quot;;
+
+//Buscar username dado un ID
+
+function getUserNameById(id: IdUser): Username{
+  // Logica de negocio, find the user
+  return &quot;gamcode&quot;;
+}
+
+getUserNameById(20);
+getUserNameById(&quot;20&quot;);</code></pre>
+<h4 id="tipos-literales">Tipos literales</h4>
+<ul>
+<li>Una variable con un tipo literal puede contener únicamente una cadena del conjunto.</li>
+<li>Se usan cadenas como &quot;tipos&quot;, combinados con el símbolo de <em>pipe</em> (&quot;<strong>|</strong>&quot;) entre ellos.</li>
+</ul>
+<pre><code class="language-typescript">// Tipos literales
+//Solo fotografias de 100x100, 500x500, 1000x1000
+type SquareSize = &quot;100x100&quot; | &quot;500x500&quot; | &quot;1000x1000&quot;;
+let smallPicture: SquareSize = &quot;200x200&quot;; //Error xq no pertenece al tipo
+
+let smallPicture: SquareSize = &quot;100x100&quot;;
+let mediumPicture: SquareSize = &quot;500x500&quot;;</code></pre>
+<h3 id="aserciones-de-tipo">Aserciones de tipo</h3>
+<ul>
+<li>Cuando el programador puede conocer más que TypeScript sobre el valor de una variable.</li>
+<li>Es un mensaje al compilador: &quot;Confía en mí, sé lo que hago&quot;</li>
+<li>Se parece al casting de tipos en otros lenguajes de programción. Sin embargo no es lo mismo.</li>
+<li>Usa dos sintaxis: <strong>&lt;Angle Bracket&gt;</strong> y (variable <strong>as</strong> tipo)</li>
+</ul>
+<pre><code class="language-typescript">// &lt;tipo&gt; // Angle Bracket Sintax
+let username: any;
+username = &quot;gamcode&quot;;
+//tenemos una cadena, TS confia en mi!
+let message: string =
+  (&lt;string&gt;username).length &gt; 5
+    ? `Welcome ${username}`
+    : &quot;Username is too short&quot;;
+
+console.log(&quot;message&quot;, message);
+
+let usernameWithId: any = &quot;gamcode 1&quot;;
+// Como obtener el username?
+username = (&lt;string&gt;usernameWithId).substring(0, 10);
+console.log(&quot;Username only: &quot;, username); //-&gt; Username only: gamcode
+
+//Sintaxis &quot;as&quot;
+message =
+  (username as string).length &gt; 5
+    ? `Welcome ${username}`
+    : &quot;Username is too short&quot;;
+
+let helloUser: any;
+helloUser = &quot;hello michi&quot;;
+username = (helloUser as string).substring(6);
+console.log(&quot;username&quot;, username); // michi</code></pre>
+<h3 id="funciones-en-typescript">Funciones en TypeScript</h3>
+<ul>
+<li>Los parámetros en las funciones son tipados.</li>
+<li>Se pueden definir parámetros opcionales.</li>
+<li>El tipo de retorno puede ser un tipo básico, enum, tipo literal o una combinación de ellos</li>
+</ul>
+<pre><code class="language-typeScript">// Crear una fotografia
+
+type SquareSize = &quot;100x100&quot; | &quot;500x500&quot; | &quot;1000x1000&quot;;
+
+function createPicture(title: string, date: string, size: SquareSize){
+  //Se crea la fotografia
+  console.log(&quot;create picture using&quot;, title, date, size);
+}
+
+createPicture(&quot;michi&quot;,&quot;02-04-2022&quot;,&quot;100x100&quot;);
+createPicture(&quot;meme&quot;,&quot;02-03-2022&quot;); //Error, espera el ultimo parámetro
+//Se soluciona con parametros opcionales -&gt; &quot;?&quot;
+
+function createPicture(title?: string, date?: string, size?: SquareSize){
+  //Se crea la fotografia
+  console.log(&quot;create picture using&quot;, title, date, size);
+}
+createPicture(&quot;meme&quot;,&quot;02-03-2022&quot;); //Ok</code></pre>
+    </section>
+
+  </main>
+
+  <template>
+    <section>
+      <header>
+        <h1 class="neon typescript">TypeScript</h1>
+      </header>
+      <details id="details-tricks">
+        <summary>
+          🏁 Fundamentos
+        </summary>
+        <ol></ol>
+      </details>
+    </section>
+  </template>
+
+  <!-- Button scroll top -->
+<button class="scroll-top-btn hidden">⬆</button>
+<!-- Custom JS  -->
+<script src="./../js/index.js" type="module"></script>
+<!-- Highlight JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+</body>
+
+</html>

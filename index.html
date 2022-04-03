@@ -11,85 +11,27 @@
   <sergey-import src="components/header" />
 
   <main class="main">
-    <!-- Angular -->
-    <article class="card">
-      <header class="card-header">
-        <h2 class="card-title">Angular</h2>
-      </header>
-      <div class="card-img-container">
-        <img class="card-img" src="./assets/images/angular-icon.svg" alt="angular-icon">
-      </div>
-      <a class="card-link" href="./angular-notes.html">Ir a los apuntes</a>
-    </article>
-    <!-- React -->
-    <article class="card">
-      <header class="card-header">
-        <h2 class="card-title">React</h2>
-      </header>
-      <div class="card-img-container">
-        <img class="card-img" src="./assets/images/react.svg" alt="React">
-      </div>
-      <a class="card-link" href="#">Ir a los apuntes</a>
-    </article>
-    <!-- JavaScript -->
-    <article class="card">
-      <header class="card-header">
-        <h2 class="card-title">JavaScript</h2>
-      </header>
-      <div class="card-img-container">
-        <img class="card-img" src="./assets/images/javascript.svg" alt="JavaScript">
-      </div>
-      <a class="card-link" href="./js-notes.html">Ir a los apuntes</a>
-    </article>
-    <!-- Bash Scripting  -->
-    <article class="card">
-      <header class="card-header">
-        <h2 class="card-title">Bash Scripting</h2>
-      </header>
-      <div class="card-img-container">
-        <img class="card-img" src="./assets/images/bash-icon.svg" alt="Bash Scripting">
-      </div>
-      <a class="card-link" href="#">Ir a los apuntes</a>
-    </article>
-    <!-- Java -->
-    <article class="card">
-      <header class="card-header">
-        <h2 class="card-title">Java</h2>
-      </header>
-      <div class="card-img-container">
-        <img class="card-img" src="./assets/images/java.svg" alt="Java">
-      </div>
-      <a class="card-link" href="#">Ir a los apuntes</a>
-    </article>
-    <!-- Node JS -->
-    <article class="card">
-      <header class="card-header">
-        <h2 class="card-title">NodeJS</h2>
-      </header>
-      <div class="card-img-container">
-        <img class="card-img" src="./assets/images/nodejs-icon.svg" alt="Node JS">
-      </div>
-      <a class="card-link" href="#">Ir a los apuntes</a>
-    </article>
-    <!-- C++ -->
-    <article class="card">
-      <header class="card-header">
-        <h2 class="card-title">C++</h2>
-      </header>
-      <div class="card-img-container">
-        <img class="card-img" src="./assets/images/c-plusplus.svg" alt="c-plusplus">
-      </div>
-      <a class="card-link" href="#">Ir a los apuntes</a>
-    </article>
-
   </main>
+
+  <template id="card">
+    <article class="card">
+      <header class="card-header">
+        <h2 class="card-title"></h2>
+      </header>
+      <div class="card-img-container">
+        <img class="card-img">
+      </div>
+      <a class="card-link">Ir a los apuntes</a>
+    </article>
+  </template>
+
   <button class="scroll-top-btn hidden">⬆</button>
   <dialog class="modal">
     <p class="modal-paraph">Todavía no hay contenido de esta tecnología. 😢</p>
     <button class="btn-modal" id="close">Cerrar</button>
   </dialog>
+  <script src="./js/cards-modal.js"></script>
   <script type="module" src="./js/index.js"></script>
-  <script src="./js/modal.js"></script>
 </body>
 
 </html>
