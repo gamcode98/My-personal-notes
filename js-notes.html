@@ -10,53 +10,15 @@
 <body>
   <sergey-import src="components/header" />
   <main>
-    <section>
-      <header>
-        <h1 class="neon js">Notas sobre JS</h1>
-      </header>
-      <!-- Tricks -->
-      <details id="details-tricks">
-        <summary>
-          🪄 Trucos
-        </summary>
-        <ol>
-          <li>
-            <a href="">Encontrar el mayor y menor de un array de números sin loop</a>
-          </li>
-          <li>
-            <a href="">Generar un ID único sin dependencias</a>
-          </li>
-          <li>
-            <a href="">Eliminando espacios en Javascript</a>
-          </li>
-        </ol>
-      </details>
-      <!-- Utils -->
-      <details id="details-utils">
-        <summary>
-          📒 Utilidades
-        </summary>
-        <ol>
-          <li>
-            <a href="">Crear un modal nativo</a>
-          </li>
-          <li>
-            <a href="">Recuperar los datos de un formulario</a>
-          </li>
-        </ol>
-      </details>
-    </section>
-    <!-- --------------------- Tricks -------------------  -->
-    <section id="tricks">
-      <sergey-import src="notes-js/tricks" as="markdown" />
-    </section>
-    <!-- --------------------- Tricks -------------------  -->
-    <!-- --------------------- Utils -------------------  -->
-    <section id="utils">
-      <sergey-import src="notes-js/utils" as="markdown" />
-    </section>
-    <!-- --------------------- Utils -------------------  -->
+    <section id="section-main">
+      <section>
+        <sergey-import src="notes-js/tricks" as="markdown" />
+      </section>
 
+      <section>
+        <sergey-import src="notes-js/utils" as="markdown" />
+      </section>
+    </section>
   </main>
 
   <template id="template-summary">
