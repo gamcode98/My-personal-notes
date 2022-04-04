@@ -64,9 +64,9 @@
 </header>
 
   <main>
-
     <section id="section-main">
-      <h2 id="fundamentos">Fundamentos</h2>
+      <section>
+        <h2 id="fundamentos">Fundamentos</h2>
 <h3 id="¿que-es-typescript">¿Que es TypeScript?</h3>
 <ul>
 <li>Lenguaje de programación tipado</li>
@@ -478,27 +478,32 @@ console.log(&quot;username&quot;, username); // michi</code></pre>
 <li>Se pueden definir parámetros opcionales.</li>
 <li>El tipo de retorno puede ser un tipo básico, enum, tipo literal o una combinación de ellos</li>
 </ul>
-<pre><code class="language-typeScript">// Crear una fotografia
+<pre><code class="language-typescript">// Crear una fotografia
 
 type SquareSize = &quot;100x100&quot; | &quot;500x500&quot; | &quot;1000x1000&quot;;
 
-function createPicture(title: string, date: string, size: SquareSize){
+function createPicture(title: string, date: string, size: SquareSize) {
   //Se crea la fotografia
   console.log(&quot;create picture using&quot;, title, date, size);
 }
 
-createPicture(&quot;michi&quot;,&quot;02-04-2022&quot;,&quot;100x100&quot;);
-createPicture(&quot;meme&quot;,&quot;02-03-2022&quot;); //Error, espera el ultimo parámetro
+createPicture(&quot;michi&quot;, &quot;02-04-2022&quot;, &quot;100x100&quot;);
+createPicture(&quot;meme&quot;, &quot;02-03-2022&quot;); //Error, espera el ultimo parámetro
 //Se soluciona con parametros opcionales -&gt; &quot;?&quot;
 
-function createPicture(title?: string, date?: string, size?: SquareSize){
+function createPicture(title?: string, date?: string, size?: SquareSize) {
   //Se crea la fotografia
   console.log(&quot;create picture using&quot;, title, date, size);
 }
-createPicture(&quot;meme&quot;,&quot;02-03-2022&quot;); //Ok</code></pre>
-<h2 id="probando">Probando</h2>
-    </section>
+createPicture(&quot;meme&quot;, &quot;02-03-2022&quot;); //Ok</code></pre>
+      </section>
 
+      <section>
+        <h2 id="ejemplos-practicos">Ejemplos practicos</h2>
+<h3 id="primer-ejemplo">Primer ejemplo</h3>
+<pre><code class="language-typescript">console.log(&quot;Hello world&quot;);</code></pre>
+      </section>
+    </section>
   </main>
 
   <template id="template-summary">

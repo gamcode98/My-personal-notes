@@ -516,25 +516,23 @@ console.log("username", username); // michi
 - Se pueden definir parámetros opcionales.
 - El tipo de retorno puede ser un tipo básico, enum, tipo literal o una combinación de ellos
 
-```typeScript
+```typescript
 // Crear una fotografia
 
 type SquareSize = "100x100" | "500x500" | "1000x1000";
 
-function createPicture(title: string, date: string, size: SquareSize){
+function createPicture(title: string, date: string, size: SquareSize) {
   //Se crea la fotografia
   console.log("create picture using", title, date, size);
 }
 
-createPicture("michi","02-04-2022","100x100");
-createPicture("meme","02-03-2022"); //Error, espera el ultimo parámetro
+createPicture("michi", "02-04-2022", "100x100");
+createPicture("meme", "02-03-2022"); //Error, espera el ultimo parámetro
 //Se soluciona con parametros opcionales -> "?"
 
-function createPicture(title?: string, date?: string, size?: SquareSize){
+function createPicture(title?: string, date?: string, size?: SquareSize) {
   //Se crea la fotografia
   console.log("create picture using", title, date, size);
 }
-createPicture("meme","02-03-2022"); //Ok
+createPicture("meme", "02-03-2022"); //Ok
 ```
-
-## Probando

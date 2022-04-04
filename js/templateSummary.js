@@ -16,34 +16,28 @@ export default function templateSummary() {
     $details.appendChild($ol);
     $summary.textContent = el.textContent;
     $subFragment.appendChild($details);
+
+    el.parentElement.id = `${el.id}-title`;
   });
   $template.querySelector("section").appendChild($subFragment);
 
-  let i = 0;
-  $h3.forEach((el) => {
-    let $li = d.createElement("li");
-    let $a = d.createElement("a");
-    $a.setAttribute("href", `#${el.id}`);
-    $a.textContent = el.textContent;
-    $li.appendChild($a);
-    let $details = $template.querySelectorAll("details");
-    $details[i].querySelector("ol").appendChild($li);
-    // i++;
-  });
-  // let $clone = d.importNode($template, true);
-  let $clone = $template.cloneNode(true);
-  // $fragment.appendChild($clone);
-  // $main.insertAdjacentHTML("afterbegin", $fragment);
-  // $main.appendChild($fragment);
+  const $sections = $sectionMain.querySelectorAll("section");
 
+  let i = 0;
+  $sections.forEach((el) => {
+    let $h3 = el.querySelectorAll("h3");
+    $h3.forEach((el) => {
+      let $li = d.createElement("li");
+      let $a = d.createElement("a");
+      $a.setAttribute("href", `#${el.id}`);
+      $a.textContent = el.textContent;
+      $li.appendChild($a);
+      let $details = $template.querySelectorAll("details");
+      $details[i].querySelector("ol").appendChild($li);
+    });
+    i++;
+  });
+
+  let $clone = $template.cloneNode(true);
   $main.insertBefore($clone, $sectionMain);
-  // console.log($clone);
-  // $main.appendChild($clone);
-  // const content = `
-  // <section>
-  //   <p>Hola que onda</p>
-  //   <p>Peeepp</p>
-  // </section>
-  // `;
-  // $main.insertAdjacentHTML("afterbegin", content);
 }
