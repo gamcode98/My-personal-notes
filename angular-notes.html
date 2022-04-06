@@ -10,26 +10,21 @@
 <body>
   <sergey-import src="components/header" />
   <main>
-    <section>
-      <header>
-        <h1 class="neon angular">Notas sobre Angular</h1>
-      </header>
-      <!-- Introduction -->
-      <details id="details-introduction">
-        <summary>
-          🏁 Introducción
-        </summary>
-        <ol>
-          <li>
-            <a href="">Instalación</a>
-          </li>
-        </ol>
-      </details>
-    </section>
-    <section id="introduction">
-      <sergey-import src="notes-angular/fundamentos" as="markdown" />
+    <section id="section-main">
+      <section>
+        <sergey-import src="notes-angular/fundamentos" as="markdown" />
+      </section>
+
     </section>
   </main>
+
+  <template id="template-summary">
+    <section>
+      <header>
+        <h1 class="neon angular">Angular</h1>
+      </header>
+    </section>
+  </template>
 
   <sergey-import src="functionalities/functionalities" />
 </body>

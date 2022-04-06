@@ -62,24 +62,9 @@
   </nav>
 </header>
   <main>
-    <section>
-      <header>
-        <h1 class="neon angular">Notas sobre Angular</h1>
-      </header>
-      <!-- Introduction -->
-      <details id="details-introduction">
-        <summary>
-          🏁 Introducción
-        </summary>
-        <ol>
-          <li>
-            <a href="">Instalación</a>
-          </li>
-        </ol>
-      </details>
-    </section>
-    <section id="introduction">
-      <h2 id="instalación">Instalación</h2>
+    <section id="section-main">
+      <section>
+        <h2 id="instalación">Instalación</h2>
 <h3 id="angular-cli">Angular CLI</h3>
 <pre><code class="language-console">npm i -g @angular/cli</code></pre>
 <h3 id="comandos-de-angular-para-correr-un-proyecto">Comandos de Angular para correr un proyecto</h3>
@@ -90,7 +75,7 @@
 <li>Cambiar de puerto: <code>ng serve -o --port=3500</code></li>
 <li>Con <code>ng version</code> dentro de un proyecto podemos ver las dependencias que trae el proyecto.</li>
 </ul>
-<h2 id="estructura-de-un-proyecto-en-angular">Estructura de un proyecto en Angular</h2>
+<h3 id="estructura-de-un-proyecto-en-angular">Estructura de un proyecto en Angular</h3>
 <ul>
 <li>La carpeta <strong>src</strong> es donde se desarrolla.</li>
 <li>El archivo <strong>.browserslistrc</strong> figuran los navegadores a los cuales se les puede dar soporte.</li>
@@ -98,89 +83,88 @@
 <li>Una extensión para <strong>vscode</strong> que ayuda en el desarrollo es <strong>Angular Language Service</strong></li>
 <li>Una recomendación es agregar un archivo <strong>.nvmrc</strong> en el proyecto e indicar la versión que se está utilizando de <strong>node</strong>.</li>
 </ul>
-<h2 id="comandos-básicos-de-typescript-para-usar-en-angular">Comandos básicos de TypeScript para usar en Angular</h2>
+<h3 id="comandos-básicos-de-typescript-para-usar-en-angular">Comandos básicos de TypeScript para usar en Angular</h3>
 <ul>
 <li>Asignar tipo de dato:</li>
 </ul>
-<pre><code class="language-TypeScript">const username: string | number = &#39;gamcode&#39;;
+<pre><code class="language-typescript">const username: string | number = &quot;gamcode&quot;;
 //Se está diciendo que username puede ser de tipo string o number</code></pre>
 <ul>
 <li>Ejemplo de una función suma:</li>
 </ul>
-<pre><code class="language-TypeScript">  const suma = (a: number, b : number)=&gt;{
-    return a + b;
-  }
-  suma(2,&quot;asdad&quot;) //Marca error de sintaxis en vscode algo que no sucede con vanilla JS</code></pre>
+<pre><code class="language-typescript">const suma = (a: number, b: number) =&gt; {
+  return a + b;
+};
+suma(2, &quot;asdad&quot;); //Marca error de sintaxis en vscode algo que no sucede con vanilla JS</code></pre>
 <blockquote>
 <p>Angular usa el concepto de POO</p>
 </blockquote>
 <ul>
 <li>Ejemplo:</li>
 </ul>
-<pre><code class="language-TypeScript">class Person {
+<pre><code class="language-typescript">class Person {
   age: number;
   lastName: string;
 
-  constructor(age: number, lastName: string){
+  constructor(age: number, lastName: string) {
     this.age = age;
-    this.lastName = lastName
+    this.lastName = lastName;
   }
 }</code></pre>
 <ul>
 <li>Otra forma de hacer lo mismo:</li>
 </ul>
-<pre><code class="language-TypeScript">class Person {
+<pre><code class="language-typescript">class Person {
   constructor(public age: number, public lastName: string) {}
 }</code></pre>
 <ul>
 <li>Se lo puede usar:</li>
 </ul>
-<pre><code class="language-TypeScript">  const gabriel = new Person(23,&quot;Mamani&quot;)
-  gabriel.age</code></pre>
-<h2 id="string-interpolation">String Interpolation</h2>
+<pre><code class="language-typescript">const gabriel = new Person(23, &quot;Mamani&quot;);
+gabriel.age;</code></pre>
+<h3 id="string-interpolation">String Interpolation</h3>
 <p>La forma en la que desde la lógica (TypeScript) se puede pasar datos a reenderizar a los templates (vista).</p>
 <ul>
 <li>Ejemplo:</li>
 </ul>
-<pre><code class="language-TypeScript">&lt;h2&gt;{{&quot;Hello world&quot;.repeat(5)}}&lt;/h2&gt;
+<pre><code class="language-typescript">&lt;h2&gt;{{&quot;Hello world&quot;.repeat(5)}}&lt;/h2&gt;
 &lt;p&gt;3 + 3 = {{3+3}}&lt;/p&gt;</code></pre>
 <p>En la carpeta <strong>src</strong> hay un archivo <strong>app.component.ts</strong> en donde hay configuraciones que indican en donde se va a reendirazar la vista y variables que se pueden reenderizar.</p>
-<pre><code class="language-TypeScript">
-//Archivo app.component.ts
-import { Component } from &#39;@angular/core&#39;;
+<pre><code class="language-typescript">//Archivo app.component.ts
+import { Component } from &quot;@angular/core&quot;;
 
 @Component({
-  selector: &#39;app-root&#39;,
-  templateUrl: &#39;./app.component.html&#39;,
-  styleUrls: [&#39;./app.component.scss&#39;],
+  selector: &quot;app-root&quot;,
+  templateUrl: &quot;./app.component.html&quot;,
+  styleUrls: [&quot;./app.component.scss&quot;],
 })
 export class AppComponent {
-  name = &#39;Gabriel&#39;;
-  img = &quot;https://placeimg.com/640/480/any&quot;
+  name = &quot;Gabriel&quot;;
+  img = &quot;https://placeimg.com/640/480/any&quot;;
 }
 //Las variables deben tener acceso público, por defecto lo es</code></pre>
 <pre><code class="language-html">&lt;!--Archivo app.component.html--&gt;
 &lt;h3&gt;Hi, I&#39;m {{name}}&lt;/h3&gt;
 &lt;img src=&quot;{{img}}&quot; alt=&quot;image&quot; /&gt;</code></pre>
-<h2 id="property-binding">Property [Binding]</h2>
+<h3 id="property-binding">Property [Binding]</h3>
 <p>Es la forma en la que se puede modificar atributos desde el controlador y mandarlos a la vista</p>
-<pre><code class="language-TypeScript">//Archivo app.component.ts
-import { Component } from &#39;@angular/core&#39;;
+<pre><code class="language-typescript">//Archivo app.component.ts
+import { Component } from &quot;@angular/core&quot;;
 
 @Component({
-  selector: &#39;app-root&#39;,
-  templateUrl: &#39;./app.component.html&#39;,
-  styleUrls: [&#39;./app.component.scss&#39;],
+  selector: &quot;app-root&quot;,
+  templateUrl: &quot;./app.component.html&quot;,
+  styleUrls: [&quot;./app.component.scss&quot;],
 })
 export class AppComponent {
-  img = &#39;https://placeimg.com/200/200/any&#39;;
-  name = &#39;Gabriel&#39;;
+  img = &quot;https://placeimg.com/200/200/any&quot;;
+  name = &quot;Gabriel&quot;;
   number = 12;
   btnDisabled = true;
   thing = {
-    name: &#39;Gabriel&#39;,
+    name: &quot;Gabriel&quot;,
     number: 21,
-    img: &#39;https://placeimg.com/200/200/any&#39;,
+    img: &quot;https://placeimg.com/200/200/any&quot;,
   };
 }</code></pre>
 <pre><code class="language-html">&lt;!--Archivo app.component.html--&gt;
@@ -195,7 +179,7 @@ export class AppComponent {
 &lt;input type=&quot;text&quot; [value]=&quot;thing.name&quot; /&gt;
 &lt;progress max=&quot;100&quot; [value]=&quot;thing.number&quot;&gt;&lt;/progress&gt;
 &lt;img [src]=&quot;thing.img&quot; alt=&quot;image&quot; /&gt;</code></pre>
-<h2 id="¿string-interpolation-o-property-binding">¿String Interpolation o Property [Binding]?</h2>
+<h3 id="¿string-interpolation-o-property-binding">¿String Interpolation o Property [Binding]?</h3>
 <ul>
 <li><p><strong>String Interpolation</strong> se lo usar para ingresar contenido como en un párrafo, h1 en donde se lo necesite reenderizarlo.</p>
 </li>
@@ -203,7 +187,7 @@ export class AppComponent {
 </li>
 </ul>
 <p><strong>Nota</strong>: Si se están usando <strong>Objetos</strong> es más recomendable usar <strong>Property Binding</strong></p>
-<h2 id="event-binding">Event Binding</h2>
+<h3 id="event-binding">Event Binding</h3>
 <pre><code class="language-html">&lt;!--Archivo app.component.html--&gt;
 &lt;h1&gt;Eventos&lt;/h1&gt;
 &lt;button [disabled]=&quot;btnDisabled&quot;&gt;Enviar&lt;/button&gt;
@@ -211,23 +195,23 @@ export class AppComponent {
 &lt;br /&gt;
 &lt;button (click)=&quot;increaseNumber()&quot;&gt;Number ++&lt;/button&gt;
 &lt;p&gt;Number: {{thing.number}}&lt;/p&gt;</code></pre>
-<pre><code class="language-TypeScript">//Archivo app.component.ts
-import { Component } from &#39;@angular/core&#39;;
+<pre><code class="language-typescript">//Archivo app.component.ts
+import { Component } from &quot;@angular/core&quot;;
 
 @Component({
-  selector: &#39;app-root&#39;,
-  templateUrl: &#39;./app.component.html&#39;,
-  styleUrls: [&#39;./app.component.scss&#39;],
+  selector: &quot;app-root&quot;,
+  templateUrl: &quot;./app.component.html&quot;,
+  styleUrls: [&quot;./app.component.scss&quot;],
 })
 export class AppComponent {
-  img = &#39;https://placeimg.com/200/200/any&#39;;
-  name = &#39;Gabriel&#39;;
+  img = &quot;https://placeimg.com/200/200/any&quot;;
+  name = &quot;Gabriel&quot;;
   number = 12;
   btnDisabled = true;
   thing = {
-    name: &#39;Gabriel&#39;,
+    name: &quot;Gabriel&quot;,
     number: 21,
-    img: &#39;https://placeimg.com/200/200/any&#39;,
+    img: &quot;https://placeimg.com/200/200/any&quot;,
   };
   //Puede ser public o private, pero si se lo quiere usar en el componente debe ser public (por defecto)
   toggleButton() {
@@ -237,7 +221,7 @@ export class AppComponent {
     this.thing.number += 1;
   }
 }</code></pre>
-<h2 id="otros-eventos-que-escuchar">Otros eventos que escuchar</h2>
+<h3 id="otros-eventos-que-escuchar">Otros eventos que escuchar</h3>
 <ul>
 <li>Keyup, Scroll</li>
 </ul>
@@ -263,24 +247,24 @@ export class AppComponent {
   background-color: rebeccapurple;
   color: white;
 }</code></pre>
-<pre><code class="language-TypeScript">//Archivo app.component.ts
+<pre><code class="language-typescript">//Archivo app.component.ts
 
-import { Component } from &#39;@angular/core&#39;;
+import { Component } from &quot;@angular/core&quot;;
 
 @Component({
-  selector: &#39;app-root&#39;,
-  templateUrl: &#39;./app.component.html&#39;,
-  styleUrls: [&#39;./app.component.scss&#39;],
+  selector: &quot;app-root&quot;,
+  templateUrl: &quot;./app.component.html&quot;,
+  styleUrls: [&quot;./app.component.scss&quot;],
 })
 export class AppComponent {
-  img = &#39;https://placeimg.com/200/200/any&#39;;
-  name = &#39;Gabriel&#39;;
+  img = &quot;https://placeimg.com/200/200/any&quot;;
+  name = &quot;Gabriel&quot;;
   number = 12;
   btnDisabled = true;
   thing = {
-    name: &#39;Gabriel&#39;,
+    name: &quot;Gabriel&quot;,
     number: 21,
-    img: &#39;https://placeimg.com/200/200/any&#39;,
+    img: &quot;https://placeimg.com/200/200/any&quot;,
   };
 
   // Otros eventos
@@ -294,7 +278,7 @@ export class AppComponent {
     this.thing.name = element.value;
   }
 }</code></pre>
-<h2 id="data-binding-con-ngmodel">Data binding con ngModel</h2>
+<h3 id="data-binding-con-ngmodel">Data binding con ngModel</h3>
 <pre><code class="language-html">&lt;!--Archivo app.component.html--&gt;
 &lt;h1&gt;ngModel&lt;/h1&gt;
 &lt;p&gt;Nombre: {{thing.name}}&lt;/p&gt;
@@ -312,13 +296,13 @@ export class AppComponent {
 /&gt;
 &lt;p&gt;Valid: {{numberInput.valid}}&lt;/p&gt;</code></pre>
 <p>Para que funcione <strong>ngModel</strong> hay que importarlo</p>
-<pre><code class="language-TypeScript">// Archivo app.module.ts
-import { NgModule } from &#39;@angular/core&#39;;
-import { BrowserModule } from &#39;@angular/platform-browser&#39;;
-import { FormsModule } from &#39;@angular/forms&#39;; // Esto se importa
+<pre><code class="language-typescript">// Archivo app.module.ts
+import { NgModule } from &quot;@angular/core&quot;;
+import { BrowserModule } from &quot;@angular/platform-browser&quot;;
+import { FormsModule } from &quot;@angular/forms&quot;; // Esto se importa
 
-import { AppRoutingModule } from &#39;./app-routing.module&#39;;
-import { AppComponent } from &#39;./app.component&#39;;
+import { AppRoutingModule } from &quot;./app-routing.module&quot;;
+import { AppComponent } from &quot;./app.component&quot;;
 
 @NgModule({
   declarations: [AppComponent],
@@ -326,10 +310,9 @@ import { AppComponent } from &#39;./app.component&#39;;
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
-</code></pre>
-<h2 id="estructuras-de-control">Estructuras de control</h2>
-<h2 id="uso-de-ngif">Uso de *ngIf</h2>
+export class AppModule {}</code></pre>
+<h3 id="estructuras-de-control">Estructuras de control</h3>
+<h3 id="uso-de-ngif">Uso de *ngIf</h3>
 <pre><code class="language-html">&lt;h1&gt;*ngIf&lt;/h1&gt;
 &lt;input type=&quot;text&quot; required [(ngModel)]=&quot;thing.name&quot; /&gt;
 &lt;p *ngIf=&quot;thing.name === &#39;gabriel&#39;&quot;&gt;Soy Gabriel&lt;/p&gt;
@@ -344,8 +327,8 @@ export class AppModule {}
   &lt;!-- El nombre que acompaña al #, es cualquiera --&gt;
   &lt;p&gt;Bloque de else&lt;/p&gt;
 &lt;/ng-template&gt;</code></pre>
-<h2 id="uso-de-ngfor">Uso de *ngFor</h2>
-<pre><code class="language-TypeScript">// Archivo app.component.ts
+<h3 id="uso-de-ngfor">Uso de *ngFor</h3>
+<pre><code class="language-typescript">// Archivo app.component.ts
 names : string[] | number[]= [&quot;Gabriel&quot;, &quot;Alejandro&quot;, &quot;Simón&quot;]
 //any[] -&gt; Indica que queremos cualquier valor, no es buena practica</code></pre>
 <pre><code class="language-html">&lt;h1&gt;*ngFor&lt;/h1&gt;
@@ -357,7 +340,7 @@ names : string[] | number[]= [&quot;Gabriel&quot;, &quot;Alejandro&quot;, &quot;
 <ul>
 <li>Crear una lista dinamicamente y eliminar un item.</li>
 </ul>
-<pre><code class="language-TypeScript">// Archivo app.component.ts
+<pre><code class="language-typescript">// Archivo app.component.ts
   newName = &quot;&quot;;
   addName(){
     this.names.push(this.newName);
@@ -378,8 +361,8 @@ names : string[] | number[]= [&quot;Gabriel&quot;, &quot;Alejandro&quot;, &quot;
   &lt;/li&gt;
   &lt;li *ngIf=&quot;names.length === 0&quot;&gt;No hay nombres&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
-<h2 id="ngfor-para-arrays">*ngFor para arrays</h2>
-<pre><code class="language-TypeScript">// Archivo app.component.ts
+<h3 id="ngfor-para-arrays">*ngFor para arrays</h3>
+<pre><code class="language-typescript">// Archivo app.component.ts
   products = [
     {
       name : &quot;coso&quot;,
@@ -403,7 +386,7 @@ names : string[] | number[]= [&quot;Gabriel&quot;, &quot;Alejandro&quot;, &quot;
 <ul>
 <li>Hay que asignarle un tipado al array de productos, entonces se usa las interfaces.</li>
 </ul>
-<pre><code class="language-TypeScript">//Archivo product.model.ts
+<pre><code class="language-typescript">//Archivo product.model.ts
 //La interface es una forma que nos dice que tipo de atributos debería tener cada objeto
 export interface Product {
   name: string;
@@ -413,7 +396,7 @@ export interface Product {
 <ul>
 <li>Ahora se lo importa</li>
 </ul>
-<pre><code class="language-TypeScript">// Archivo app.component.ts
+<pre><code class="language-typescript">// Archivo app.component.ts
 
   import {Product} from &quot;./product.model&quot;
   //Los : (dos puntos) significa asignar un tipado
@@ -441,7 +424,7 @@ export interface Product {
 <ul>
 <li>Como <strong>category</strong> no existe, vscode avisa que algo anda mal, para solucionarlo se puede hacer que sea opcional agregando a la interfaz dicho atributo con un signo de pregunta <strong>?</strong></li>
 </ul>
-<pre><code class="language-TypeScript">export interface Product {
+<pre><code class="language-typescript">export interface Product {
   name: string;
   price: numb   er;
   image: string;
@@ -450,7 +433,7 @@ export interface Product {
 <ul>
 <li>*ngFor solo funciona en objetos que puedan iterarse</li>
 </ul>
-<h2 id="uso-de-ngswitch">Uso de ngSwitch</h2>
+<h3 id="uso-de-ngswitch">Uso de ngSwitch</h3>
 <pre><code class="language-html">&lt;h2&gt;ngSwitch&lt;/h2&gt;
 &lt;input type=&quot;text&quot; required [(ngModel)]=&quot;thing.name&quot; /&gt;
 &lt;div [ngSwitch]=&quot;thing.name&quot;&gt;
@@ -465,20 +448,19 @@ export interface Product {
   &lt;p *ngIf=&quot; thing.name===&#39;alejandro&#39;&quot;&gt;La persona es alejandro&lt;/p&gt;
   &lt;p *ngIf=&quot; thing.name===&#39;simon&#39;&quot;&gt;La persona es simon&lt;/p&gt; 
   --&gt;</code></pre>
-<h2 id="extensión-para-navegadores-para-desarrollar-en-angular">Extensión para navegadores para desarrollar en Angular</h2>
+<h3 id="extensión-para-navegadores-para-desarrollar-en-angular">Extensión para navegadores para desarrollar en Angular</h3>
 <blockquote>
 <p>Angular Dev Tools</p>
 </blockquote>
-<h2 id="estilos-en-angular">Estilos en Angular</h2>
+<h3 id="estilos-en-angular">Estilos en Angular</h3>
 <ul>
 <li><p>La primera forma es la normal</p>
 </li>
 <li><p>La otra es: Dynamic Class &amp; Style</p>
 </li>
 </ul>
-<pre><code class="language-TypeScript">// Archivo app.component.ts
-  widthImg = 10;
-</code></pre>
+<pre><code class="language-typescript">// Archivo app.component.ts
+widthImg = 10;</code></pre>
 <pre><code class="language-html">&lt;h1&gt;Class &amp; Style&lt;/h1&gt;
 &lt;input type=&quot;text&quot; required #nameInput2=&quot;ngModel&quot; [(ngModel)]=&quot;thing.name&quot; /&gt;
 &lt;!--                     invalid es el nombre de la clase --&gt;
@@ -519,7 +501,7 @@ export interface Product {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }</code></pre>
-<h2 id="ngclass--ngstyle">NgClass &amp; NgStyle</h2>
+<h3 id="ngclass--ngstyle">NgClass &amp; NgStyle</h3>
 <pre><code class="language-html">&lt;h2&gt;NgClass&lt;/h2&gt;
 &lt;input type=&quot;text&quot; required #nameInput4=&quot;ngModel&quot; [(ngModel)]=&quot;thing.name&quot; /&gt;
 &lt;!-- Si se sigue con esto puede llegar a ser poco legible --&gt;
@@ -556,12 +538,12 @@ export interface Product {
     &gt;&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-<pre><code class="language-TypeScript"> box = {
-    width: 100,
-    height: 100,
-    background: &#39;red&#39;,
-  };</code></pre>
-<h2 id="creando-un-formulario">Creando un formulario</h2>
+<pre><code class="language-typescript">box = {
+  width: 100,
+  height: 100,
+  background: &quot;red&quot;,
+};</code></pre>
+<h3 id="creando-un-formulario">Creando un formulario</h3>
 <pre><code class="language-html">&lt;h2&gt;Formulario&lt;/h2&gt;
 &lt;form (ngSubmit)=&quot;onRegister()&quot; #myForm=&quot;ngForm&quot;&gt;
   &lt;div class=&quot;input.group&quot;&gt;
@@ -601,7 +583,7 @@ export interface Product {
   &lt;!-- Si hay otro boton que hace otra cosa que no sea enviar el formulario hay que ponerle un type=&quot;button&quot;, sino angular lo toma como si fuera un type=&quot;submit&quot; --&gt;
   &lt;button type=&quot;button&quot;&gt;Action&lt;/button&gt;
 &lt;/form&gt;</code></pre>
-<pre><code class="language-TypeScript">  register = {
+<pre><code class="language-typescript">  register = {
     name: &#39;&#39;,
     email: &#39;&#39;,
     password: &#39;&#39;,
@@ -610,8 +592,18 @@ export interface Product {
     console.log(this.register);
   }
 }</code></pre>
+      </section>
+
     </section>
   </main>
+
+  <template id="template-summary">
+    <section>
+      <header>
+        <h1 class="neon angular">Angular</h1>
+      </header>
+    </section>
+  </template>
 
   <!-- Button scroll top -->
 <button class="scroll-top-btn hidden">⬆</button>
