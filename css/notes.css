@@ -4,6 +4,7 @@
   --js-color: #fede43;
   --angular-color: #f3233b;
   --typescript-color: #007cc8;
+  --nodejs-color: #3e9f4b;
 }
 ul {
   list-style: initial;
@@ -36,6 +37,12 @@ h2 {
     0 0 20px var(--typescript-color), 0 0 40px var(--typescript-color),
     0 0 80px var(--typescript-color), 0 0 90px var(--typescript-color),
     0 0 100px var(--typescript-color), 0 0 150px var(--typescript-color);
+}
+.neon.nodejs {
+  text-shadow: 0 0 5px var(--nodejs-color), 0 0 10px var(--nodejs-color),
+    0 0 20px var(--nodejs-color), 0 0 40px var(--nodejs-color),
+    0 0 80px var(--nodejs-color), 0 0 90px var(--nodejs-color),
+    0 0 100px var(--nodejs-color), 0 0 150px var(--nodejs-color);
 }
 main {
   width: 95%;

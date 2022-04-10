@@ -10,6 +10,11 @@ const cardsContent = [
     link: "./typescript-notes.html",
   },
   {
+    title: "Node JS",
+    img: "./assets/images/nodejs-icon.svg",
+    link: "./nodejs-notes.html",
+  },
+  {
     title: "JavaScript",
     img: "./assets/images/javascript.svg",
     link: "./js-notes.html",
@@ -34,11 +39,7 @@ const cardsContent = [
     img: "./assets/images/java.svg",
     link: "#",
   },
-  {
-    title: "Node JS",
-    img: "./assets/images/nodejs-icon.svg",
-    link: "#",
-  },
+
   {
     title: "C++",
     img: "./assets/images/c-plusplus.svg",

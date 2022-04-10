@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Iconscout -->
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="./css/notes.css">
+<!-- Highlight style sheet -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css"
+  integrity="sha512-Jk4AqjWsdSzSWCSuQTfYRIF84Rq/eV0G2+tu07byYwHcbTGfdmLrHjUSwvzp5HvbiqK4ibmNwdcG49Y5RGYPTg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+<title>Notes-NodeJs</title>
+</head>
+
+<body>
+  <header class="header">
+  <div class="header-menu">
+    <a href="./index.html" class="nav-logo">Gamcode</a>
+    <div class="header-btns">
+      <a href="#" title="Theme" id="icon-theme">
+        <i class="uil uil-moon icon-img"></i>
+      </a>
+      <a href="#" title="Menu" id="icon-menu">
+        <i class="uil uil-apps icon-img"></i>
+      </a>
+    </div>
+  </div>
+  <nav class="nav-menu">
+    <ul class="nav-items">
+      <li>
+        <a href="#" title="Buy me a coffee">
+          <i class="uil uil-coffee icon-img"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" title="Portfolio">
+          <i class="uil uil-suitcase icon-img"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" title="GitHub">
+          <i class="uil uil-github icon-img"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" title="Linkedin">
+          <i class="uil uil-linkedin icon-img"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+  <main>
+    <section id="section-main">
+      <section>
+        <h2 id="configuración">Configuración</h2>
+<h3 id="preparación-de-entorno-de-trabajo">Preparación de entorno de trabajo</h3>
+<pre><code class="language-console">npm init -y
+git init
+touch .editorconfig .eslintrc.json index.js</code></pre>
+<h3 id="extraer-configuración-inicial-de-gitignore">Extraer configuración inicial de gitignore</h3>
+<ul>
+<li>Ir a la página: <a href="https://www.toptal.com/developers/gitignore">toptal</a></li>
+<li>Seleccionamos: Node, Windows, Linux, macOS</li>
+<li>Copiamos el código y lo pegamos al <strong>.gitignore</strong></li>
+<li>Copiar en el archivo <strong>.editorconfig</strong> la siguiente configuración</li>
+</ul>
+<pre><code class="language-console"># Editor configuration, see https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.js]
+quote_type = single
+
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false</code></pre>
+<ul>
+<li>Copiar en el archivo <strong>.eslintrc</strong> la siguiente configuración</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;parserOptions&quot;: {
+    &quot;ecmaVersion&quot;: 2018
+  },
+  &quot;extends&quot;: [&quot;eslint:recommended&quot;, &quot;prettier&quot;],
+  &quot;env&quot;: {
+    &quot;es6&quot;: true,
+    &quot;node&quot;: true,
+    &quot;jest&quot;: true
+  },
+  &quot;rules&quot;: {
+    &quot;no-console&quot;: &quot;warn&quot;
+  }
+}</code></pre>
+<h3 id="scripts-del-archivo-packagejson">Scripts del archivo package.json</h3>
+<pre><code class="language-json">&quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;nodemon index.js&quot;,
+    &quot;start&quot;: &quot;node index.js&quot;,
+    &quot;lint&quot;: &quot;eslint&quot;
+  },</code></pre>
+<h3 id="instalación-de-dependecias-de-desarrollo">Instalación de dependecias de desarrollo</h3>
+<pre><code class="language-console">npm i nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier -D</code></pre>
+<h3 id="instalación-de-express-y-creación-del-servidor-http">Instalación de Express y creación del servidor HTTP</h3>
+<pre><code class="language-console">npm i express</code></pre>
+<pre><code class="language-javascript">//Archivo index.js
+const express = require(&quot;express&quot;);
+const app = express();
+const port = 3000;
+
+app.get(&quot;/&quot;, (req, res) =&gt; {
+  res.send(&quot;Hi, my server in express&quot;);
+});
+
+app.listen(port, () =&gt; {
+  console.log(&quot;Server on port: &quot; + port);
+});</code></pre>
+<p>Ejecutar en la consola:</p>
+<pre><code class="language-console">npm run dev</code></pre>
+<h3 id="¿qué-es-una-restful-api">¿Qué es una RESTful API?</h3>
+<ul>
+<li><strong>REST</strong> significa: Representational State Transfer</li>
+</ul>
+<p>Ejemplos de uso los verbos de la arquitectura REST</p>
+<p><img src="../../assets/images/verbos-rest.png" alt="verbos-rest"></p>
+<h3 id="get-recibir-parámetros">GET: recibir parámetros</h3>
+<pre><code class="language-javascript">app.get(&quot;/products&quot;, (req, res) =&gt; {
+  const { id } = req.params;
+  res.json([
+    {
+      id,
+      name: &quot;Product 1&quot;,
+      price: 2000,
+    },
+    {
+      id,
+      name: &quot;Product 2&quot;,
+      price: 3000,
+    },
+  ]);
+});
+
+//Recibir un id
+app.get(&quot;/products/:id&quot;, (req, res) =&gt; {
+  const { id } = req.params;
+  res.json({
+    id,
+    name: &quot;Product 1&quot;,
+    price: 2000,
+  });
+});
+
+//Recibir 2 id
+app.get(&quot;/categories/:categoryId/products/:productId&quot;, (req, res) =&gt; {
+  const { categoryId, productId } = req.params;
+  res.json({
+    categoryId,
+    productId,
+    name: &quot;Product 1&quot;,
+    price: 2000,
+  });
+});</code></pre>
+<h3 id="get-parámetros-query">GET: parámetros query</h3>
+<ul>
+<li>Mayormente se los usa para hacer filtros</li>
+<li>Ejemplos:
+<img src="../../assets/images/nodejs-quey-params.png" alt="query-params"></li>
+</ul>
+<pre><code class="language-javascript">app.get(&quot;/users&quot;, (req, res) =&gt; {
+  const { limit, offset } = req.query;
+  if (limit &amp;&amp; offset) {
+    res.json({
+      limit,
+      offset,
+    });
+  } else {
+    res.send(&quot;no hay parámetros&quot;);
+  }
+});</code></pre>
+<ul>
+<li>Libreria para generar datafake: <a href="https://fakerjs.dev/guide/#overview">faker-js</a></li>
+<li>Instalación:</li>
+</ul>
+<pre><code class="language-console">npm install @faker-js/faker --save-dev</code></pre>
+<ul>
+<li>Consumiendo desde el endpoint se le puede pasar parametros tales como size: <a href="https://localhost:3000/products?size=10">https://localhost:3000/products?size=10</a></li>
+</ul>
+<pre><code class="language-javascript">app.get(&quot;/products&quot;, (req, res) =&gt; {
+  const products = [];
+  const { size, offset } = req.query;
+  const limit = size || 10; // Solo genera 10 si no se especifica por el endpoint
+  for (let index = 0; index &lt; 100; index++) {
+    products.push({
+      name: faker.commerc.productName(),
+      price: parseInt(faker.commerc.price(), 10),
+      image: faker.image.imageUrl(),
+    });
+  }
+  res.json(products);
+});</code></pre>
+<h3 id="separación-de-responsabilidades-con-expressrouter">Separación de responsabilidades con express.Router</h3>
+<ul>
+<li>Se crea una carpeta <strong>routes</strong> en donde van a estar las rutas.</li>
+</ul>
+<pre><code class="language-console">mkdir routes</code></pre>
+<p>Ejemplo:</p>
+<pre><code class="language-console">touch routes/products.router.js</code></pre>
+<pre><code class="language-javascript">//Archivo products.router.js
+const express = require(&quot;express&quot;);
+const router = express.Router();
+
+router.get(&quot;/&quot;, (req, res) =&gt; {
+  res.send(&quot;get&quot;);
+});
+
+module.exports = router;</code></pre>
+<pre><code class="language-console">touch routes/index.js</code></pre>
+<pre><code class="language-javascript">//Archivo routes/index.js
+const express = require(&quot;express&quot;);
+
+const productsRouter = require(&quot;./products.router&quot;);
+
+function routerApi(app) {
+  const router = express.Router(); //Para crear ruta maestra
+  app.use(&quot;/api/v1&quot;, router); //Endpoint por el que siempre empiezan las rutas
+  router.use(&quot;/products&quot;, productsRouter);
+  //Para acceder al endpoint sería: http://localhost:3000/api/v1/products
+}
+
+module.exports = routerApi;</code></pre>
+<pre><code class="language-javascript">//Archivo index.js
+const express = require(&quot;express&quot;);
+const routerApi = require(&quot;./routes&quot;);
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+routerApi(app);
+
+app.listen(port, () =&gt; {
+  console.log(&quot;Server on port: &quot; + port);
+});</code></pre>
+<h3 id="post-método-para-crear">POST: Método para crear</h3>
+<ul>
+<li>Para usar el método POST se necesita un cliente tipo REST</li>
+<li>En VSCode existe una extensión llamada <strong>Rest Client</strong> que permite hacerlo, la petición sería la siguiente:</li>
+</ul>
+<pre><code class="language-json">POST http://localhost:3000/api/v1/products
+content-type: application/json
+
+{
+   &quot;name&quot;: &quot;New product&quot;,
+   &quot;price&quot;: 1231,
+   &quot;img&quot;: &quot;http://placeimg.com/640/300&quot;
+}</code></pre>
+<h4 id="creando-el-método-post-en-el-router-de-productos">Creando el método POST en el router de productos</h4>
+<pre><code class="language-javascript">router.post(&quot;/&quot;, (req, res) =&gt; {
+  const body = req.body;
+  res.json({
+    message: &quot;created&quot;,
+    data: body,
+  });
+});</code></pre>
+<ul>
+<li>Al enviar la petición con el cliente no se puede ver el <strong>body</strong></li>
+<li>Para solucionarlo se debe usar un middleware nativo de express</li>
+</ul>
+<pre><code class="language-javascript">// Archivo index.js
+app.use(express.json());</code></pre>
+<ul>
+<li>Volvemos en enviar la petición con el cliente y se debería mostrar el <strong>body</strong></li>
+</ul>
+<h3 id="put-patch-y-delete">PUT, PATCH y DELETE</h3>
+<ul>
+<li><strong>PATCH</strong> solo se le envia lo que se quiere modificar, no es necesario enviar todo el cuerpo.</li>
+</ul>
+<pre><code class="language-javascript">router.patch(&quot;/:id&quot;, (req, res) =&gt; {
+  const body = req.body;
+  const { id } = req.params;
+  res.json({
+    message: &quot;updated&quot;,
+    data: body,
+    id,
+  });
+});</code></pre>
+<ul>
+<li><strong>DELETE</strong></li>
+</ul>
+<pre><code class="language-javascript">router.delete(&quot;/:id&quot;, (req, res) =&gt; {
+  const { id } = req.params;
+  res.json({
+    message: &quot;deleted&quot;,
+    id,
+  });
+});</code></pre>
+<h3 id="códigos-de-estado-o-http-response-status-codes">Códigos de estado o HTTP response status codes</h3>
+<ul>
+<li><p>Páginas para ver los códigos de estado: <a href="https://http.cat/">http.cat</a>, <a href="https://developer.mozilla.org/es/docs/Web/HTTP/Status">mdn</a></p>
+</li>
+<li><p>Cuando se crea algo debería retornar un código 201. Entonces:</p>
+</li>
+</ul>
+<pre><code class="language-javascript">router.post(&quot;/&quot;, (req, res) =&gt; {
+  const body = req.body;
+  res.status(201).json({
+    message: &quot;created&quot;,
+    data: body,
+  });
+});</code></pre>
+<ul>
+<li>Ejemplo de código 404</li>
+</ul>
+<pre><code class="language-javascript">app.get(&quot;/:id&quot;, (req, res) =&gt; {
+  //Importante: todo lo que se pasa por parámetro lo devuelve como string
+  const { id } = req.params;
+  if (id === &quot;999&quot;) {
+    res.status(404).json({
+      mssage: &quot;not found&quot;,
+    });
+  } else {
+    res.status(200).json({
+      id,
+      name: &quot;Product 1&quot;,
+      price: 2000,
+    });
+  }
+});</code></pre>
+<h3 id="introducción-a-servicios">Introducción a servicios</h3>
+<ul>
+<li>En el siguiente archivo se define toda la lógica y las interacciones a nivel transaccional de los datos (products en este caso).</li>
+<li>Se debe encargar de como se crea, edita, actualiza todo frente a la entidad (producto)</li>
+</ul>
+<pre><code class="language-console">mkdir services
+touch services/product.service.js</code></pre>
+<pre><code class="language-javascript">// Archivo services/product.service.js
+class ProductsService {
+  constructor() {
+    this.products = [];
+    this.generate();
+  }
+
+  generate() {
+    const limit = 100;
+    for (let index = 0; index &lt; limit; index++) {
+      this.products.push({
+        id: faker.datatype.uuid(),
+        name: faker.commerce.productName(),
+        price: parseInt(faker.commerce.price(), 10),
+        image: faker.image.imageUrl(),
+        isBlock: faker.datatype.boolean(),
+      });
+    }
+  }
+
+  find() {
+    return this.products;
+  }
+
+  findOne(id) {
+    return this.products.find((item) =&gt; item.id === id);
+  }
+}
+
+module.exports = ProductsService;</code></pre>
+<pre><code class="language-javascript">// Archivo products.router.js
+const ProductsService = require(&quot;./../services/product.service&quot;);
+const service = new ProductsService();
+
+router.get(&quot;/&quot;, (req, res) =&gt; {
+  const products = service.find();
+  res.json(products);
+});
+
+router.get(&quot;/:id&quot;, (req, res) =&gt; {
+  const { id } = req.params;
+  const product = service.findOne(id);
+  res.json(product);
+});</code></pre>
+<ul>
+<li>Cliente REST</li>
+</ul>
+<pre><code class="language-console">GET http://localhost:3000/api/v1/products</code></pre>
+<pre><code class="language-console">GET http://localhost:3000/api/v1/products/asdsadad</code></pre>
+<h3 id="crear-editar-eliminar">Crear, editar, eliminar</h3>
+<pre><code class="language-javascript">// Archivo services/product.service.js
+class ProductsService {
+  constructor() {
+    this.products = [];
+    this.generate();
+  }
+
+  generate() {
+    const limit = 100;
+    for (let index = 0; index &lt; limit; index++) {
+      this.products.push({
+        id: faker.datatype.uuid(),
+        name: faker.commerce.productName(),
+        price: parseInt(faker.commerce.price(), 10),
+        image: faker.image.imageUrl(),
+        isBlock: faker.datatype.boolean(),
+      });
+    }
+  }
+
+  create(data) {
+    const newProduct = {
+      id: faker.datatype.uuid(),
+      ...data,
+    };
+    this.products.push(newProduct);
+    return newProduct;
+  }
+
+  find() {
+    return this.products;
+  }
+
+  findOne(id) {
+    return this.products.find((item) =&gt; item.id === id);
+  }
+  update(id, changes) {
+    const index = this.products.findIndex((item) =&gt; item.id === id);
+    if (index === -1) {
+      throw new Error(&quot;product not found&quot;);
+    }
+    const product = this.products[index];
+    this.products[index] = {
+      ...product,
+      ...changes,
+    };
+    return this.products[index];
+  }
+
+  delete(id) {
+    const index = this.products.findIndex((item) =&gt; item.id === id);
+    if (index === -1) {
+      throw new Error(&quot;product not found&quot;);
+    }
+    this.products.splice(index, 1);
+    return { id: &quot;deleted&quot; };
+  }
+}
+
+module.exports = ProductsService;</code></pre>
+<pre><code class="language-javascript">// Archivo products.router.js
+const ProductsService = require(&quot;./../services/product.service&quot;);
+const service = new ProductsService();
+
+router.post(&quot;/&quot;, (req, res) =&gt; {
+  const body = req.body;
+  const newProduct = service.create(body);
+  res.status(201).json(newProduct);
+});
+
+router.patch(&quot;/:id&quot;, (req, res) =&gt; {
+  const { id } = req.params;
+  const body = req.body;
+  const product = service.update(id, body);
+  res.json(product);
+});
+
+router.delete(&quot;/:id&quot;, (req, res) =&gt; {
+  const { id } = req.params;
+  const rta = service.delete(id);
+  res.json(rta);
+});</code></pre>
+<h3 id="async-await-y-captura-de-errores">Async await y captura de errores</h3>
+<pre><code class="language-javascript">// Archivo services/product.service.js
+class ProductsService {
+  constructor() {
+    this.products = [];
+    this.generate();
+  }
+
+  generate() {
+    const limit = 100;
+    for (let index = 0; index &lt; limit; index++) {
+      this.products.push({
+        id: faker.datatype.uuid(),
+        name: faker.commerce.productName(),
+        price: parseInt(faker.commerce.price(), 10),
+        image: faker.image.imageUrl(),
+        isBlock: faker.datatype.boolean(),
+      });
+    }
+  }
+
+  async create(data) {
+    const newProduct = {
+      id: faker.datatype.uuid(),
+      ...data,
+    };
+    this.products.push(newProduct);
+    return newProduct;
+  }
+
+  //Simulación de una petición asincrona con una promesa
+  find() {
+    return new Promise((resolve, reject) =&gt; {
+      setTimeout(() =&gt; {
+        resolve(this.products);
+      }, 3000);
+    });
+  }
+
+  async findOne(id) {
+    return this.products.find((item) =&gt; item.id === id);
+  }
+  async update(id, changes) {
+    const index = this.products.findIndex((item) =&gt; item.id === id);
+    if (index === -1) {
+      throw new Error(&quot;product not found&quot;);
+    }
+    const product = this.products[index];
+    this.products[index] = {
+      ...product,
+      ...changes,
+    };
+    return this.products[index];
+  }
+
+  async delete(id) {
+    const index = this.products.findIndex((item) =&gt; item.id === id);
+    if (index === -1) {
+      throw new Error(&quot;product not found&quot;);
+    }
+    this.products.splice(index, 1);
+    return { id: &quot;deleted&quot; };
+  }
+}
+
+module.exports = ProductsService;</code></pre>
+<pre><code class="language-javascript">// Archivo products.router.js
+const ProductsService = require(&quot;./../services/product.service&quot;);
+const service = new ProductsService();
+
+router.get(&quot;/&quot;, async (req, res) =&gt; {
+  const products = await service.find();
+  res.json(products);
+});
+
+router.get(&quot;/:id&quot;, async (req, res) =&gt; {
+  const { id } = req.params;
+  const product = await service.findOne(id);
+  res.json(product);
+});
+
+router.post(&quot;/&quot;, async (req, res) =&gt; {
+  const body = req.body;
+  const newProduct = await service.create(body);
+  res.status(201).json(newProduct);
+});
+//Captura de error con try catch
+router.patch(&quot;/:id&quot;, async (req, res) =&gt; {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    const product = await service.update(id, body);
+    res.json(product);
+  } catch (error) {
+    res.status(404).json({
+      message: error.message,
+    });
+  }
+});
+
+router.delete(&quot;/:id&quot;, async (req, res) =&gt; {
+  const { id } = req.params;
+  const rta = await service.delete(id);
+  res.json(rta);
+});</code></pre>
+<h3 id="¿qué-son-los-middlewares">¿Qué son los middlewares?</h3>
+      </section>
+
+    </section>
+  </main>
+
+  <template id="template-summary">
+    <section>
+      <header>
+        <h1 class="neon nodejs">NodeJs</h1>
+      </header>
+    </section>
+  </template>
+
+  <!-- Button scroll top -->
+<button class="scroll-top-btn hidden">⬆</button>
+<!-- Custom JS  -->
+<script src="./../js/index.js" type="module"></script>
+<!-- Highlight JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+</body>
+
+</html>

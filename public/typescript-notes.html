@@ -496,6 +496,243 @@ function createPicture(title?: string, date?: string, size?: SquareSize) {
   console.log(&quot;create picture using&quot;, title, date, size);
 }
 createPicture(&quot;meme&quot;, &quot;02-03-2022&quot;); //Ok</code></pre>
+<h3 id="tipo-de-retorno-en-typescript">Tipo de retorno en TypeScript</h3>
+<pre><code class="language-typescript">// Dos tipos de retorno
+function handleError(code: number, message: string): never | string {
+  //Procesamiento del codigo, mensaje
+  if (message === &quot;error&quot;) {
+    throw new Error(`${message}. Code error: ${code}`);
+  } else {
+    return &quot;An error has ocurred&quot;;
+  }
+}
+//Verficacion de la funcion
+let result = handleError(200, &quot;ok&quot;); //retorna un string
+console.log(&quot;result&quot;, result);
+result = handleError(404, &quot;error&quot;); // retorna un never, que hace referencia a lanzar un error
+console.log(&quot;result&quot;, result);</code></pre>
+<pre><code class="language-typescript">function handleError(code: number, message: string): never | string {
+  //Procesamiento del codigo, mensaje
+  if (message === &quot;error&quot;) {
+    throw new Error(`${message}. Code error: ${code}`);
+  } else {
+    return &quot;An error has ocurred&quot;;
+  }
+}
+//Para capturar el error independientemente si hay un string o error
+try {
+  let result = handleError(200, &quot;ok&quot;);
+  console.log(&quot;result&quot;, result);
+  result = handleError(404, &quot;error&quot;);
+  console.log(&quot;result&quot;, result);
+} catch (error) {}</code></pre>
+<h3 id="interfaces">Interfaces</h3>
+<h4 id="entendiendo-las-interfaces">Entendiendo las interfaces</h4>
+<p>Las interfaces en TypeScript constituyen una forma poderosa de definir &quot;contratos&quot; tanto para tu proyecto, como para el código externo del mismo.</p>
+<pre><code class="language-typeScript">
+enum PictureOrientation {
+  Landscape,
+  Portrait,
+  Square,
+  Panorama,
+}
+//Funcion para mostrar una fotografia
+function showPicture(picture:
+               {title: string,
+                date: string,
+                orientation : PhotoOrientation}){
+  console.log(`[title: ${picture.title},
+               date: ${picture.date},
+               orientation: ${picture.orientation} ]`)
+}
+let myPic = {
+  title: &quot;Test title&quot;,
+  date: &quot;2020-03&quot;,
+  orientation: PhotoOrientation.Landscape
+};
+
+showPicture(myPic)
+showPicture({
+  title: &quot;Test title&quot;,
+  date: &quot;2020-03&quot;,
+  orientation: PhotoOrientation.Portrait,
+  // extra: &quot;test&quot;, //Error
+})</code></pre>
+<h4 id="aplicando-interfaces">Aplicando interfaces</h4>
+<pre><code class="language-typescript">enum PictureOrientation {
+  Landscape,
+  Portrait,
+  Square,
+  Panorama,
+}
+
+interface Picture {
+  title: string;
+  date: string;
+  orientation: PhotoOrientation;
+}
+function showPicture(picture: Picture) {
+  console.log(`[title: ${picture.title},
+               date: ${picture.date},
+               orientation: ${picture.orientation} ]`);
+}</code></pre>
+<h3 id="interfaces-propiedades-opcionales">Interfaces: Propiedades opcionales</h3>
+<p>No todas las propiedades de una interfaz podrían ser requeridas.</p>
+<p>Establecemos una propiedad como opcional con el símbolo (<strong>?</strong>) después del nombre.</p>
+<pre><code class="language-typescript">enum PictureOrientation {
+  Landscape,
+  Portrait,
+  Square,
+  Panorama,
+}
+interface PictureConfig {
+  title?: string;
+  date?: string;
+  orientation?: PhotoOrientation;
+}
+function generatePicture(config: PictureConfig) {
+  const pic = { title: &quot;Default&quot;, date: &quot;2020-03&quot; };
+  if (config.title) {
+    pic.title = config.title;
+  }
+  if (config.date) {
+    pic.date = config.date;
+  }
+  return pic;
+}
+let picture = generatePicture({});
+console.log(&quot;picture&quot;, picture);
+picture = generatePicture({ title: &quot;Travel Pic&quot; });
+console.log(&quot;picture&quot;, picture);</code></pre>
+<h3 id="interfaces-propiedades-de-solo-lectura">Interfaces: Propiedades de solo lectura</h3>
+<p>Algunas propiedades de la interfaz podrían no ser <strong>modificables</strong> un vez creado el objeto.</p>
+<p>Esto es posible usando <strong>readonly</strong> antes del nombre de la propiedad.</p>
+<pre><code class="language-typescript">//Interfaz
+interface User {
+  readonly id: number; //Solo lectura
+  user: string;
+  isPro: boolean;
+}
+let user: User;
+user = { id: 10, username: &quot;gamcode&quot;, isPro: true };
+console.log(&quot;user&quot;, user);
+user.id = 20; //Error
+user.username = &quot;paparazzi&quot;;
+console.log(&quot;user&quot;, user);</code></pre>
+<h3 id="extensión-de-interfaces">Extensión de interfaces</h3>
+<p>Las interfaces pueden extenderse unas de otras. Esto permite copiar los miembros ya definidos en una interfaz a otra, ganando flexibilidad y reusabilidad de componentes.</p>
+<pre><code class="language-typeScript">enum PhotoOrientation {
+  Landscape,
+  Portrait,
+  Square,
+  Panorama,
+}
+interface Entity {
+   id: number;
+  title: string;
+}
+interface Album extends Entity{
+  //Copia de los atributos de entity
+  description: string;
+}
+interface Picture extends Entity{
+  //Copia de los atributos de entity
+  orientation: PhotoOrientation
+}
+const album :Album = {
+  id: 1,
+  title: &quot;Meetups&quot;,
+  description: &quot;Community events around the world&quot;
+}
+const picture: Picture = {
+  id: 1,
+  title: &quot;Family&quot;,
+  orientation: PhotoOrientation.Landscape
+}
+let newPicture = {} as Picture;
+newPicture.id = 2;
+newPicture.title =&quot;Moon&quot;;
+console.log(&quot;album&quot;,album)
+console.log(&quot;picture&quot;,picture)
+console.log(&quot;newPicture&quot;,newPicture)</code></pre>
+<h3 id="clases">Clases</h3>
+<h4 id="definiendo-clases-y-constructores">Definiendo Clases y Constructores</h4>
+<p>A partir de ECMAScript 2015 es posible construir clases y hacer uso del paradigma de la Programación Orientada a Objetos en JavaScript.</p>
+<p>TypeScript permite aplicar estas técnicas sin tener que esperar por otra versión.</p>
+<pre><code class="language-typeScript">enum PhotoOrientation {
+  Landscape,
+  Portrait,
+  Square,
+  Panorama,
+}
+class Picture {
+  //Propiedades
+  id: number;
+  title: string;
+  orientation: PhotoOrientation;
+
+  constructor(id: number,
+              title: string,
+              orientation: PhotoOrientation){
+      this.id = id;
+      this.title = title;
+      this.orientation = orientation;
+  }
+
+  //Comportamiento
+
+  toString(){
+    return `[id : ${this.id},
+            title: ${this.title},
+            orientation: ${this.orientation}]`
+  }
+}
+class Album {
+  id: number;
+  title: string;
+  pictures: Picture[];
+  constructor(id: number, title: string, ){
+    this.id = id;
+    this.title = title;
+    this.pictures = [];
+  }
+  addPicture(picture: Picture){
+    this.pictures.push(picture)
+  }
+}
+const album: Album = new Album(1, &quot;Personal Pictures&quot;);
+const picture: Picture = new Picture(1, &quot;gamcode session&quot;, PhotoOrientation.Square);
+album.addPicture(picture);
+console.log(&quot;album&quot;,album)</code></pre>
+<h4 id="miembros-públicos">Miembros públicos</h4>
+<p>TypeScript define un modificador de acceso público por defecto para los miembros de clase.</p>
+<p>También es posible marcar un miembro como público usando la palabra reservada <strong>public</strong></p>
+<pre><code class="language-typescript">class Picture {
+  //Propiedades
+  public id: number;
+  public title: string;
+  public orientation: PhotoOrientation;
+
+  public constructor(id: number, title: string, orientation: PhotoOrientation) {
+    this.id = id;
+    this.title = title;
+    this.orientation = orientation;
+  }
+  //Comportamiento
+  public toString() {
+    return `[id : ${this.id},
+            title: ${this.title},
+            orientation: ${this.orientation}]`;
+  }
+}
+
+//Accediendo a los miembros publicos
+picture.id = 100; //public
+picture.title = &quot;Another title&quot;; // public
+album.title = &quot;Personal Activities&quot;;
+console.log(&quot;album&quot;, album);</code></pre>
+<h4 id="miembros-privados">Miembros privados</h4>
+<p>TypeScript define una manera propia de declarar o marcar un miembro como privado usando la palabra reservada <strong>private</strong></p>
       </section>
 
       <section>
