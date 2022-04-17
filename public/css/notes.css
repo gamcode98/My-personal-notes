@@ -5,6 +5,7 @@
   --angular-color: #f3233b;
   --typescript-color: #007cc8;
   --nodejs-color: #3e9f4b;
+  --git-color: #ee443b;
 }
 ul {
   list-style: initial;
@@ -43,6 +44,12 @@ h2 {
     0 0 20px var(--nodejs-color), 0 0 40px var(--nodejs-color),
     0 0 80px var(--nodejs-color), 0 0 90px var(--nodejs-color),
     0 0 100px var(--nodejs-color), 0 0 150px var(--nodejs-color);
+}
+.neon.git {
+  text-shadow: 0 0 5px var(--git-color), 0 0 10px var(--git-color),
+    0 0 20px var(--git-color), 0 0 40px var(--git-color),
+    0 0 80px var(--git-color), 0 0 90px var(--git-color),
+    0 0 100px var(--git-color), 0 0 150px var(--git-color);
 }
 main {
   width: 95%;

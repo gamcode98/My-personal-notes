@@ -20,6 +20,11 @@ const cardsContent = [
     link: "./js-notes.html",
   },
   {
+    title: "Git",
+    img: "./assets/images/git-icon.svg",
+    link: "./git-notes.html",
+  },
+  {
     title: "Angular",
     img: "./assets/images/angular-icon.svg",
     link: "./angular-notes.html",

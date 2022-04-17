@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <sergey-import src="components/head-notes">
+    <title>Notes-GIT</title>
+  </sergey-import>
+</head>
+
+<body>
+  <sergey-import src="components/header" />
+  <main>
+    <section id="section-main">
+      <section>
+        <sergey-import src="notes-git/utils" as="markdown" />
+      </section>
+
+      <section>
+        <!-- <sergey-import src="notes-js/utils" as="markdown" /> -->
+      </section>
+    </section>
+  </main>
+
+  <template id="template-summary">
+    <section>
+      <header>
+        <h1 class="neon git">Git</h1>
+      </header>
+    </section>
+  </template>
+  <sergey-import src="functionalities/functionalities" />
+</body>
+
+</html>

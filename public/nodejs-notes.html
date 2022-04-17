@@ -586,6 +586,204 @@ router.delete(&quot;/:id&quot;, async (req, res) =&gt; {
   res.json(rta);
 });</code></pre>
 <h3 id="¿qué-son-los-middlewares">¿Qué son los middlewares?</h3>
+<p><img src="../../assets/images/nodejs-nomiddleware.png" alt="middleware"></p>
+<ul>
+<li>Están en medio del request y el response</li>
+<li>Cada vez que se usa la función <strong>.use()</strong> se está ejecutando un middleware.</li>
+<li>Puede funcionar de forma secuencial, uno detrás de otros.</li>
+</ul>
+<p><img src="../../assets/images/nodejs-middleware-2.png" alt="middleware-2"></p>
+<h4 id="estructura-de-un-middleware">Estructura de un middleware</h4>
+<p><img src="../../assets/images/nodejs-middleware-3.png" alt="middleware-3"></p>
+<ul>
+<li>La función <strong>next</strong> nos permite avanzar hacia el siguiente middleware.</li>
+<li>La función <strong>res.send(&quot;end&quot;)</strong> finaliza la respuesta.</li>
+</ul>
+<h4 id="middleware-de-error">Middleware de error</h4>
+<ul>
+<li>Recibe como parámetro el error</li>
+</ul>
+<p><img src="../../assets/images/nodejs-middleware-4.png" alt="middleware-4"></p>
+<h4 id="casos-de-usos">Casos de usos:</h4>
+<ul>
+<li>Funcionan como pipes</li>
+<li>Validar datos</li>
+<li>Capturar errores</li>
+<li>Validad permisos</li>
+<li>Controlar accesos</li>
+</ul>
+<h3 id="middleware-para-errores">Middleware para errores</h3>
+<ul>
+<li>Uso de middleware global</li>
+</ul>
+<pre><code class="language-console">mkdir middlewares
+touch middlewares/error.handler.js</code></pre>
+<pre><code class="language-javascript">// Archivo middlewares/error.handler.js
+//Encargado de capturar cualquier errror
+function logErrors(err, req, res, next) {
+  console.log(&quot;LogErrors&quot;);
+  console.error(err);
+  next(err); //Middlewre de tipo error, si estuviera vacio sería uno normal
+}
+
+//Detecta un error, pero le da formato para devolverle al cliente
+function errorHandler(err, req, res, next) {
+  console.log(&quot;ErrorHandler&quot;);
+  res.status(500).json({
+    message: err.message,
+    stack: err.stack, // Para saber en donde ocurrió el error
+  });
+  //Aunque no se use next, se lo debe colocar para que detecte que es un middleware de tipo error
+  //No avanza al sgte middleware
+}
+
+module.exports = { logErrors, errorHandler };</code></pre>
+<pre><code class="language-javascript">//Archivo index.js
+const express = require(&quot;express&quot;);
+const routerApi = require(&quot;./routes&quot;);
+const { errorHandler, logErrors } = require(&quot;./middlewares/error.handler&quot;);
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+routerApi(app);
+
+//Se lo debe usar despues de definir el routing
+app.use(logErrors);
+app.use(errorHandler);
+
+app.listen(port, () =&gt; {
+  console.log(&quot;Server on port: &quot; + port);
+});</code></pre>
+<pre><code class="language-javascript">// Archivo products.router.js
+
+router.get(&quot;/:id&quot;, async (req, res, next) =&gt; {
+  try {
+    const { id } = req.params;
+    const product = await service.findOne(id);
+    res.json(product);
+  } catch (error) {
+    next(error);
+  }
+});</code></pre>
+<h3 id="manejo-de-errores-con-boom">Manejo de errores con Boom</h3>
+<ul>
+<li>Instalación</li>
+</ul>
+<pre><code class="language-console">npm i @hapi/boom</code></pre>
+<pre><code class="language-javascript">// Archivo services/product.service.js
+const boom = require(&quot;@hapi/boom&quot;);
+class ProductsService {
+  constructor() {
+    this.products = [];
+    this.generate();
+  }
+
+  generate() {
+    const limit = 100;
+    for (let index = 0; index &lt; limit; index++) {
+      this.products.push({
+        id: faker.datatype.uuid(),
+        name: faker.commerce.productName(),
+        price: parseInt(faker.commerce.price(), 10),
+        image: faker.image.imageUrl(),
+        isBlock: faker.datatype.boolean(),
+      });
+    }
+  }
+
+  create(data) {
+    const newProduct = {
+      id: faker.datatype.uuid(),
+      ...data,
+    };
+    this.products.push(newProduct);
+    return newProduct;
+  }
+
+  find() {
+    return this.products;
+  }
+
+  findOne(id) {
+    const product = this.products.find((item) =&gt; item.id === id);
+    if (!product) {
+      //Con libreria boom
+      throw boom.notFound(&quot;Product not found&quot;);
+    }
+    return product;
+  }
+  update(id, changes) {
+    const index = this.products.findIndex((item) =&gt; item.id === id);
+    if (index === -1) {
+      // throw new Error(&quot;product not found&quot;); - Antes
+      //Con libreria boom
+      throw boom.notFound(&quot;Product not found&quot;);
+    }
+    const product = this.products[index];
+    this.products[index] = {
+      ...product,
+      ...changes,
+    };
+    return this.products[index];
+  }
+
+  delete(id) {
+    const index = this.products.findIndex((item) =&gt; item.id === id);
+    if (index === -1) {
+      // throw new Error(&quot;product not found&quot;); - Antes
+      //Con libreria boom
+      throw boom.notFound(&quot;Product not found&quot;);
+    }
+    this.products.splice(index, 1);
+    return { id: &quot;deleted&quot; };
+  }
+}
+
+module.exports = ProductsService;</code></pre>
+<pre><code class="language-javascript">// Archivo middlewares/error.handler.js
+
+function boomErrorHandler(err, req, res, next) {
+  if (err.isBoom) {
+    const { output } = err;
+    res.status(output.statusCode).json(output.payload);
+  }
+  next(err);
+}
+module.exports = { boomErrorHandler };</code></pre>
+<pre><code class="language-javascript">//Archivo index.js
+const express = require(&quot;express&quot;);
+const routerApi = require(&quot;./routes&quot;);
+const {
+  errorHandler,
+  logErrors,
+  boomErrorHandler,
+} = require(&quot;./middlewares/error.handler&quot;);
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+routerApi(app);
+
+//Se lo debe usar despues de definir el routing
+app.use(logErrors);
+app.use(boomErrorHandler);
+app.use(errorHandler);
+
+app.listen(port, () =&gt; {
+  console.log(&quot;Server on port: &quot; + port);
+});</code></pre>
+<pre><code class="language-javascript">// Archivo products.router.js
+
+router.get(&quot;/:id&quot;, async (req, res, next) =&gt; {
+  try {
+    const { id } = req.params;
+    const product = await service.findOne(id);
+    res.json(product);
+  } catch (error) {
+    next(error);
+  }
+});</code></pre>
       </section>
 
     </section>
