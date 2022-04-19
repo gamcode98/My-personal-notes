@@ -6,6 +6,7 @@
   --typescript-color: #007cc8;
   --nodejs-color: #3e9f4b;
   --git-color: #ee443b;
+  --mongodb-color: #239a3e;
 }
 ul {
   list-style: initial;
@@ -50,6 +51,12 @@ h2 {
     0 0 20px var(--git-color), 0 0 40px var(--git-color),
     0 0 80px var(--git-color), 0 0 90px var(--git-color),
     0 0 100px var(--git-color), 0 0 150px var(--git-color);
+}
+.neon.mongodb {
+  text-shadow: 0 0 5px var(--mongodb-color), 0 0 10px var(--mongodb-color),
+    0 0 20px var(--mongodb-color), 0 0 40px var(--mongodb-color),
+    0 0 80px var(--mongodb-color), 0 0 90px var(--mongodb-color),
+    0 0 100px var(--mongodb-color), 0 0 150px var(--mongodb-color);
 }
 main {
   width: 95%;

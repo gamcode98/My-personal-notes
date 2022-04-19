@@ -25,6 +25,11 @@ const cardsContent = [
     link: "./git-notes.html",
   },
   {
+    title: "Mongodb",
+    img: "./assets/images/mongodb.svg",
+    link: "./mongodb-notes.html",
+  },
+  {
     title: "Angular",
     img: "./assets/images/angular-icon.svg",
     link: "./angular-notes.html",

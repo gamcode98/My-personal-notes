@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Iconscout -->
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="./css/notes.css">
+<!-- Highlight style sheet -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css"
+  integrity="sha512-Jk4AqjWsdSzSWCSuQTfYRIF84Rq/eV0G2+tu07byYwHcbTGfdmLrHjUSwvzp5HvbiqK4ibmNwdcG49Y5RGYPTg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+<title>Notes-Mongodb</title>
+</head>
+
+<body>
+  <header class="header">
+  <div class="header-menu">
+    <a href="./index.html" class="nav-logo">Gamcode</a>
+    <div class="header-btns">
+      <a href="#" title="Theme" id="icon-theme">
+        <i class="uil uil-moon icon-img"></i>
+      </a>
+      <a href="#" title="Menu" id="icon-menu">
+        <i class="uil uil-apps icon-img"></i>
+      </a>
+    </div>
+  </div>
+  <nav class="nav-menu">
+    <ul class="nav-items">
+      <li>
+        <a href="#" title="Buy me a coffee">
+          <i class="uil uil-coffee icon-img"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" title="Portfolio">
+          <i class="uil uil-suitcase icon-img"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" title="GitHub">
+          <i class="uil uil-github icon-img"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" title="Linkedin">
+          <i class="uil uil-linkedin icon-img"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+  <main>
+    <section id="section-main">
+      <section>
+        <h2 id="básicos">Básicos</h2>
+<h3 id="¿qué-es-mongodb">¿Qué es MongoDB?</h3>
+<p>MongoDB es un gestor de base de datos No relacionales (NoSQL) de código abierto.</p>
+<h3 id="intalación">Intalación</h3>
+<p>Para instalar mongodb se lo puede hacer siguiendo los pasos de la documentación oficial: <a href="https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/">mongodb.com</a></p>
+      </section>
+
+      <!-- <section>
+        <h2 id="utilidades">Utilidades</h2>
+<h3 id="crear-un-modal-nativo-con-html">Crear un modal nativo con html</h3>
+<pre><code class="language-html">&lt;dialog&gt;
+  &lt;h1&gt;¿Sabías abrir modales así?&lt;/h1&gt;
+  &lt;p&gt;¡Y es totalmente nativo!&lt;/p&gt;
+  &lt;button id=&quot;cancel&quot;&gt;Cerrar&lt;/button&gt;
+&lt;/dialog&gt;
+
+&lt;button id=&quot;show&quot;&gt;Abrir modal&lt;/button&gt;</code></pre>
+<pre><code class="language-javascript">const d = document;
+const $dialog = d.querySelector(&quot;dialog&quot;);
+const $show = d.querySelector(&#39;#show&#39;)
+const $cancel d.querySelector(&#39;#cancel&#39;)
+
+$show.addEventListener(&#39;click&#39;, () = $dialog.showModal())
+$cancel.addEventListener(&#39;click&#39;, () = $dialog.close())</code></pre>
+<p>Ver ejemplo en la documentación de MDN: <a href="https://developer.mozilla.org/es/docs/Web/HTML/Element/dialog">modal</a></p>
+<h3 id="recuperar-los-datos-de-un-formulario">Recuperar los datos de un formulario</h3>
+<pre><code class="language-html">&lt;form&gt;
+  &lt;input type=&quot;email&quot; placeholder=&quot;Ingresa tu correo&quot; required /&gt;
+  &lt;br /&gt;
+  &lt;input type=&quot;password&quot; placeholder=&quot;Ingresa tu contraseña&quot; required /&gt;
+  &lt;br /&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Enviar&quot; /&gt;
+&lt;/form&gt;</code></pre>
+<pre><code class="language-javascript">const d = document;
+d.querySelector(&quot;form&quot;).addEventListener(&quot;submit&quot;, (e) =&gt; {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target));
+  alert(JSON.stringify(data));
+});</code></pre>
+      </section> -->
+    </section>
+  </main>
+
+  <template id="template-summary">
+    <section>
+      <header>
+        <h1 class="neon mongodb">Mongodb</h1>
+      </header>
+    </section>
+  </template>
+
+  <!-- Button scroll top -->
+<button class="scroll-top-btn hidden">⬆</button>
+<!-- Custom JS  -->
+<script src="./../js/index.js" type="module"></script>
+<!-- Highlight JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+
+</html>
