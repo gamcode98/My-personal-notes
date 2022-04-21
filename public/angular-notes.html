@@ -80,10 +80,10 @@
 <li>La carpeta <strong>src</strong> es donde se desarrolla.</li>
 <li>El archivo <strong>.browserslistrc</strong> figuran los navegadores a los cuales se les puede dar soporte.</li>
 <li>El archivo <strong>.editorconfig</strong> se establecen las normativas para trabajar en equipo (identación, etc), hay que tener instalado la extesión en <strong>vscode</strong>.</li>
-<li>Una extensión para <strong>vscode</strong> que ayuda en el desarrollo es <strong>Angular Language Service</strong></li>
+<li>Una extensión para <strong>vscode</strong> que ayuda en el desarrollo es <a href="https://marketplace.visualstudio.com/items?itemName=Angular.ng-template"><strong>Angular Language Service</strong></a></li>
 <li>Una recomendación es agregar un archivo <strong>.nvmrc</strong> en el proyecto e indicar la versión que se está utilizando de <strong>node</strong>.</li>
 </ul>
-<h3 id="comandos-básicos-de-typescript-para-usar-en-angular">Comandos básicos de TypeScript para usar en Angular</h3>
+<h3 id="ejemplos-básicos-de-typescript-para-usar-en-angular">Ejemplos básicos de TypeScript para usar en Angular</h3>
 <ul>
 <li>Asignar tipo de dato:</li>
 </ul>
@@ -594,6 +594,118 @@ widthImg = 10;</code></pre>
 }</code></pre>
       </section>
 
+      <section>
+        <h2 id="estructura-de-ficheros-en-angular">Estructura de ficheros en Angular</h2>
+<h3 id="archivos-de-configuración">Archivos de configuración</h3>
+<ul>
+<li><strong>tsconfig.spec.json</strong> es el archivo de testing</li>
+<li><strong>tsconfig.json</strong> es donde están las configuraciones de typescript</li>
+<li><strong>tsconfig.app.json</strong> extiende del archivo anterior.</li>
+<li><strong>package.json</strong> se encuentran los scripts que se pueden usar, dependencias, etc.</li>
+<li><strong>angular.json</strong> se pueden indicar reglas como en donde se guardará el proyecto cuando se haga el <strong>build</strong><ul>
+<li><em>outputPath</em> es el directorio final.</li>
+<li><em>styles</em> aqui se puede agregar bootstrap.</li>
+<li><em>budgets</em> se puede indicar cuanto se quiere que ocupe la aplicación como mínimo y máximo.</li>
+</ul>
+</li>
+</ul>
+<h3 id="la-carpeta-src">La carpeta src</h3>
+<ul>
+<li><em>styles.css</em> es el fichero de estilos global.</li>
+<li><em>main.ts</em> es el encargado de levantar la aplicación</li>
+<li><em>index.html</em> es donde Angular inyecta todo el código que se genere</li>
+</ul>
+<h3 id="la-carpeta-app">La carpeta app</h3>
+<ul>
+<li>Es donde se crean los componentes, servicios, etc.</li>
+<li><em>app.component.html</em> es el segundo archivo html principal de la aplicación.</li>
+<li><em>app.component.ts</em> es el archivo asociado al html, es donde se escribe la lógica</li>
+<li><em>app.module.ts</em> es el módulo principal de la aplicación.</li>
+</ul>
+<pre><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
+import { BrowserModule } from &quot;@angular/platform-browser&quot;;
+
+import { AppRoutingModule } from &quot;./app-routing.module&quot;;
+import { AppComponent } from &quot;./app.component&quot;;
+
+@NgModule({
+  declarations: [AppComponent], //Se pueden declarar otros componentes que no tengan modulo propio
+  imports: [BrowserModule, AppRoutingModule], //Se puede inyectar otros modulos
+  providers: [], //Se puede inyectar servicios
+  bootstrap: [AppComponent], //Es el componente inicial que se lanza en la aplicación
+})
+export class AppModule {}</code></pre>
+<h3 id="la-carpeta-assets">La carpeta assets</h3>
+<ul>
+<li>Se puede tener imagenes, fuentes.</li>
+</ul>
+<h3 id="la-carpeta-environments">La carpeta environments</h3>
+<ul>
+<li>Los ficheros se los usa para crear variables en la aplicación, como por ejemplo una url de una api</li>
+</ul>
+      </section>
+
+      <section>
+        <h2 id="componentes">Componentes</h2>
+<h3 id="¿qué-es-un-componente-en-angular">¿Qué es un componente en Angular?</h3>
+<p>Un componente básicamente es markup, meta-data y clase, todo esto combinado crea una UI (User Interface).</p>
+<h3 id="crear-componente-con-la-cli-de-angular">Crear componente con la cli de Angular</h3>
+<p>&lt;nombre&gt; es el nombre del componente</p>
+<pre><code class="language-console">ng g c &lt;button&gt;</code></pre>
+<h3 id="inyectar-un-componente">Inyectar un componente</h3>
+<pre><code class="language-typescript">//archivo button.component.ts
+import { Component, OnInit } from &quot;@angular/core&quot;;
+
+@Component({
+  selector: &quot;app-button&quot;, //Nombre de la etiqueta del componente
+  templateUrl: &quot;./button.component.html&quot;, //Ruta del contenido html del componente
+  styleUrls: [&quot;./button.component.css&quot;], //Ruta de los estilos del componente
+})
+export class ButtonComponent implements OnInit {
+  //Lógica del componente
+  constructor() {}
+
+  ngOnInit(): void {}
+}</code></pre>
+<p>Se lo inyecta al archivo <strong>app.component.html</strong> de la siguiente manera</p>
+<pre><code class="language-html">&lt;!--archivo app.component.html--&gt;
+&lt;app-button&gt;&lt;/app-button&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2 id="one-way-data-binding">One way data binding</h2>
+<h3 id="interpolación-angular">Interpolación {{angular}}</h3>
+<p>Permite colocar texto entre elementos html y atributos</p>
+<pre><code class="language-typescript">title: string = &quot;tutorial&quot;;
+url: string = &quot;https://www.placeimg.com/300/400&quot;;</code></pre>
+<pre><code class="language-html">&lt;p&gt;{{title}} para aprender Angular&lt;/p&gt;
+&lt;p&gt;Total: {{5+5}}&lt;/p&gt;
+&lt;img src=&quot;{{url}}&quot; alt=&quot;&quot; /&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2 id="two-way-data-binding">Two way data binding</h2>
+<h3 id="enlace-de-datos-bidireccional">Enlace de datos bidireccional</h3>
+<p>Se hace uso de <strong>NgModel</strong> quien crea una instancia del form-control, entonces se lo importa en el archivo <strong>app.module.ts</strong></p>
+<pre><code class="language-typescript">//app.module.ts
+import { FormsModule } from &#39;@angular/forms&#39;;
+
+@NgModule({
+  imports: [FormsModule],
+})</code></pre>
+<pre><code class="language-typescript">//app.component.ts
+//También puede ser cualquier otro componente el archivo
+  name!: string;</code></pre>
+<pre><code class="language-html">&lt;!--app.component.html--&gt;
+&lt;p&gt;El nombre es: {{name}}&lt;/p&gt;
+&lt;input type=&quot;text&quot; [(ngModel)]=&quot;name&quot; /&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2 id="directivas">Directivas</h2>
+<h3 id="¿qué-es-una-directiva">¿Qué es una directiva?</h3>
+<p>Las directivas son como atributos que pueden cambiar la apariencia o el comportamiento del DOM element.</p>
+      </section>
     </section>
   </main>
 

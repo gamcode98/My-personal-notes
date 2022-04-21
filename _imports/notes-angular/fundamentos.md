@@ -19,10 +19,10 @@ npm i -g @angular/cli
 - La carpeta **src** es donde se desarrolla.
 - El archivo **.browserslistrc** figuran los navegadores a los cuales se les puede dar soporte.
 - El archivo **.editorconfig** se establecen las normativas para trabajar en equipo (identación, etc), hay que tener instalado la extesión en **vscode**.
-- Una extensión para **vscode** que ayuda en el desarrollo es **Angular Language Service**
+- Una extensión para **vscode** que ayuda en el desarrollo es [**Angular Language Service**](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)
 - Una recomendación es agregar un archivo **.nvmrc** en el proyecto e indicar la versión que se está utilizando de **node**.
 
-### Comandos básicos de TypeScript para usar en Angular
+### Ejemplos básicos de TypeScript para usar en Angular
 
 - Asignar tipo de dato:
 

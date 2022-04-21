@@ -70,6 +70,132 @@
 <p>MongoDB es un gestor de base de datos No relacionales (NoSQL) de código abierto.</p>
 <h3 id="intalación">Intalación</h3>
 <p>Para instalar mongodb se lo puede hacer siguiendo los pasos de la documentación oficial: <a href="https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/">mongodb.com</a></p>
+<h3 id="iniciar-parar-el-servidor">Iniciar, parar el servidor</h3>
+<ul>
+<li>Para ver el estado del servidor:</li>
+</ul>
+<pre><code class="language-console">sudo systemctl status mongo</code></pre>
+<ul>
+<li>Para iniciar el servidor:</li>
+</ul>
+<pre><code class="language-console">sudo systemctl start mongo</code></pre>
+<ul>
+<li>Para parar el servidor:</li>
+</ul>
+<pre><code class="language-console">sudo systemctl stop mongo</code></pre>
+<h3 id="otra-forma-es-usar-docker">Otra forma es usar docker</h3>
+<ul>
+<li>Descargar la imagen:</li>
+</ul>
+<pre><code class="language-console">docker pull mongo</code></pre>
+<ul>
+<li>Para ver las imagenes descargadas</li>
+</ul>
+<pre><code class="language-console">docker images</code></pre>
+<ul>
+<li>Ver los procesos de docker:</li>
+</ul>
+<pre><code class="language-console">docker ps</code></pre>
+<ul>
+<li>Ver los procesos de docker ejecutados anteriormente:</li>
+</ul>
+<pre><code class="language-console">docker ps -a</code></pre>
+<ul>
+<li>Correr el contenedor:</li>
+</ul>
+<pre><code class="language-console">docker run mongo</code></pre>
+<ul>
+<li>Configurar el puerto y darle nombre al contenedor:</li>
+</ul>
+<p>El <strong>-p</strong> indica el puerto, donde el primero es el puerto de la maquina y el segundo es el puerto del contenedor.
+La opción <strong>--name</strong> es para darle un nombre.</p>
+<pre><code class="language-console">docker run -p 27017:27017 --name mydb mongo</code></pre>
+<ul>
+<li>Para conectarse a la base de datos:</li>
+</ul>
+<pre><code class="language-console">mongo localhost:27017</code></pre>
+<ul>
+<li>Para mantener una sesión de mongo ejecutandose en background:
+Agregar la opción <strong>-d</strong>. Devuelve solo el id del proceso</li>
+</ul>
+<pre><code class="language-console">docker run -d -p 27017:27017 --name mydb mongo</code></pre>
+<ul>
+<li>Para parar el proceso de la base de datos de docker:</li>
+</ul>
+<pre><code class="language-console">docker ps</code></pre>
+<p>Entrega los procesos con sus id, nombre. Con los cuales se los puede detener.</p>
+<pre><code class="language-console">docker stop idNumber
+# Otra forma
+docker stop name</code></pre>
+<ul>
+<li>Para eliminar un contenedor:
+Donde id es el id del proceso a eliminar. Los id se los puede ver con <code>docker ps</code></li>
+</ul>
+<pre><code class="language-console">docker rm id</code></pre>
+<h3 id="otra-forma-de-conectarse-a-una-db-con-docker">Otra forma de conectarse a una db con Docker</h3>
+<p>Donde <strong>mongodb</strong> es el nombre de la base de datos.</p>
+<pre><code class="language-console">docker exec -it mongodb bash</code></pre>
+<ul>
+<li>Persistir datos con docker en el host
+Donde la opción <strong>-v</strong> indica en donde se van a copiar los datos de la bd de mongo en el host</li>
+</ul>
+<pre><code class="language-console">docker run -d -p 27017:27017 -v /home/ada/Desktop/docker/mongo:/data/db --name mydb mongo
+</code></pre>
+<p>Ahora, si se elimina el proceso de mongodb y se crea uno nuevamente se puede volver a ver los datos, usando el mismo comando anterior</p>
+<h2 id="comandos-básicos-del-cliente-mongo">Comandos básicos del cliente mongo</h2>
+<h3 id="mostrar-las-bases-de-datos">Mostrar las bases de datos</h3>
+<pre><code class="language-console">show databases;</code></pre>
+<h3 id="para-saber-en-cual-base-de-datos-estamos">Para saber en cual base de datos estamos</h3>
+<pre><code class="language-console">db;</code></pre>
+<h3 id="para-crear-un-base-de-datos-y-empezar-a-usarla">Para crear un base de datos y empezar a usarla</h3>
+<pre><code class="language-console">use namedb</code></pre>
+<h3 id="documentos">Documentos</h3>
+<ul>
+<li>Los documentos son objetos de tipo JSON</li>
+</ul>
+<pre><code class="language-console">user1 = {
+  &quot;username&quot;: &quot;user1&quot;,
+  &quot;age&quot;: 23,
+  &quot;email&quot;: &quot;user1@mail.com&quot;
+};</code></pre>
+<ul>
+<li>Insertar un documento en una colección</li>
+</ul>
+<pre><code class="language-console">db.users.insert(user1);</code></pre>
+<ul>
+<li>Mostrar las colecciones:</li>
+</ul>
+<pre><code class="language-console">show collections;</code></pre>
+<h3 id="el-objetid">El objetId</h3>
+<p>Está conformado por:
+1 - Timestamp
+2 - Identificador para el servidor
+3 - PID
+4 - AutoIncrement</p>
+<h3 id="maneras-de-insertar-documentos-en-una-colección">Maneras de insertar documentos en una colección</h3>
+<p>Con <code>insert</code>, no tan recomendado por la documentación oficial.</p>
+<pre><code class="language-console">db.users.insert(user1);</code></pre>
+<p>Con <code>insertOne()</code></p>
+<pre><code class="language-console">db.users.insertOne(user1);</code></pre>
+<p>Con <code>insertMany([])</code></p>
+<pre><code class="language-console">db.users.insertMany([
+  {
+  &quot;username&quot;: &quot;user1&quot;,
+  &quot;age&quot;: 23,
+  &quot;email&quot;: &quot;user1@mail.com&quot;
+},
+{
+  &quot;username&quot;: &quot;user2&quot;,
+  &quot;age&quot;: 32,
+  &quot;email&quot;: &quot;user2@mail.com&quot;
+};
+]);</code></pre>
+<p>Con <code>save()</code></p>
+<p>Si el objeto <strong>no</strong> existe, se crea.
+Si el objeto <strong>si</strong>, se actualiza.
+Esto lo hace por medio del _id
+No tan recomendado por la documentación oficial.</p>
+<pre><code class="language-console">db.users.save(user8);</code></pre>
       </section>
 
       <!-- <section>
