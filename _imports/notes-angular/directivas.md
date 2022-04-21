@@ -33,6 +33,6 @@ cities = ["Barcelona", "Madrid", "Lima"];
 
 ```html
 <!--app.component.html-->
-<p>El nombre es: {{name}}</p>
+<p *ngIf="name ">El nombre es: {{name}}</p>
 <input type="text" [(ngModel)]="name" />
 ```

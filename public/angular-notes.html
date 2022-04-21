@@ -705,6 +705,268 @@ import { FormsModule } from &#39;@angular/forms&#39;;
         <h2 id="directivas">Directivas</h2>
 <h3 id="¿qué-es-una-directiva">¿Qué es una directiva?</h3>
 <p>Las directivas son como atributos que pueden cambiar la apariencia o el comportamiento del DOM element.</p>
+<h3 id="tipos-de-directivas">Tipos de directivas</h3>
+<ul>
+<li>Estructurales</li>
+<li>De atributos</li>
+<li>Directivas Customs</li>
+<li>Componentes - Son directivas con template</li>
+</ul>
+<h3 id="ngfor---directiva-estructural">*NgFor - Directiva estructural</h3>
+<pre><code class="language-typescript">cities = [&quot;Barcelona&quot;, &quot;Madrid&quot;, &quot;Lima&quot;];</code></pre>
+<pre><code class="language-html">&lt;ul *ngFor=&quot;let city of cities&quot;&gt;
+  &lt;li&gt;{{city}}&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<h3 id="ngif---directiva-estructural">*NgIf - Directiva estructural</h3>
+<pre><code class="language-typescript">//app.component.ts
+//También puede ser cualquier otro componente el archivo
+  name!: string;</code></pre>
+<pre><code class="language-html">&lt;!--app.component.html--&gt;
+&lt;p *ngIf=&quot;name &quot;&gt;El nombre es: {{name}}&lt;/p&gt;
+&lt;input type=&quot;text&quot; [(ngModel)]=&quot;name&quot; /&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2 id="directivas-de-atributos">Directivas de atributos</h2>
+<h3 id="formas-de-agregar-estilos-con-ngclass-ngstyle">Formas de agregar estilos con ngClass, ngStyle</h3>
+<pre><code class="language-css">.selected {
+  background-color: rebeccapurple;
+  color: white;
+  padding: 1rem;
+}
+
+.unSelected {
+  background-color: white;
+  color: black;
+}
+
+.red {
+  color: red;
+}</code></pre>
+<pre><code class="language-html">&lt;ul *ngFor=&quot;let city of cities&quot;&gt;
+  &lt;!-- ngClass --&gt;
+  &lt;!-- Primer forma --&gt;
+  &lt;li [ngClass]=&quot;[&#39;selected&#39;,&#39;red&#39;]&quot;&gt;{{city}}&lt;/li&gt;
+  &lt;!-- Segunda forma --&gt;
+  &lt;li [ngClass]=&quot;&#39;selected red&#39;&quot;&gt;{{city}}&lt;/li&gt;
+  &lt;!-- Tercer forma --&gt;
+  &lt;li [ngClass]=&quot;{&#39;selected&#39;:true}&quot;&gt;{{city}}&lt;/li&gt;
+  &lt;!-- Con un poco de dinamismo --&gt;
+  &lt;li [ngClass]=&quot;{&#39;selected&#39;:city === &#39;Lima&#39;, &#39;red&#39;:city !== &#39;Barcelona&#39;}&quot;&gt;
+    {{city}}
+  &lt;/li&gt;
+  &lt;!-- ngStyle --&gt;
+  &lt;li [ngStyle]=&quot;{&#39;color&#39;:&#39;red&#39;, &#39;background&#39;:city===&#39;Madrid&#39;? &#39;blue&#39;:&#39;green&#39;}&quot;&gt;
+    {{city}}
+  &lt;/li&gt;
+  &lt;!-- Es como poner estilos en línea, no muy recomendado --&gt;
+&lt;/ul&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2 id="ciclo-de-vida-de-un-componente">Ciclo de vida de un componente</h2>
+<p>Un componente tiene un ciclo de vida que comienza cuando Angular crea una instancia de la clase de componente y representa la vista del componente junto con sus vistas secundarias.</p>
+<p>El ciclo de vida continúa con la detección de cambios, ya que Angular verifica cuándo cambian las propiedades vinculadas a los datos y actualiza tanto la vista como la instancia del componente según sea necesario.</p>
+<p>El ciclo de vida finaliza cuando Angular destruye la instancia del componente y elimina su plantilla renderizada del DOM.</p>
+<p>Las directivas tienen un ciclo de vida similar, ya que Angular crea, actualiza y destruye instancias en el curso de la ejecución.</p>
+<h3 id="interfaces-que-se-ejecutan-durante-el-ciclo-de-vida-de-un-componente">Interfaces que se ejecutan durante el ciclo de vida de un componente</h3>
+<p><img src="./../../assets/images/ciclo-vida-componente-angular.png" alt="Ciclo de vida de un compontente"></p>
+<h3 id="las-tres-interfaces-mas-importantes">Las tres interfaces mas importantes</h3>
+<pre><code class="language-typescript">  ngOnChanges(changes: SimpleChanges): void {
+    console.log(&#39;Change-&gt;&#39;, changes);
+    // Trae los cambios anteriores y los nuevos
+    // Se los ve con los inputs, outputs
+  }
+  ngOnInit(): void {
+    console.log(&#39;OnInit-&gt;&#39;);
+    // Se ejecuta si no hay inputs u outputs
+    // Se lo usa para consumir API
+  }
+  ngOnDestroy(): void {
+    console.log(&#39;Destroy&#39;);
+    // Se utiliza para la desuscripcion de los observables y cuando el usuario va a abondar el componente
+  }</code></pre>
+      </section>
+
+      <section>
+        <h2 id="event-binding">Event binding</h2>
+<p>Para vincular a un evento, utiliza la sintaxis de vinculación de eventos Angular.</p>
+<p>Esta sintaxis consta de un nombre de evento de destino entre paréntesis a la izquierda de un signo igual y una declaración de plantilla entre comillas a la derecha.
+En el siguiente ejemplo, el nombre del evento de destino es click y la instrucción de la plantilla es onSave().</p>
+<p><img src="./../../assets/images/event-binding-angular.png" alt="event-binding"></p>
+<p>Nos permite escuchar y responder a acciones del usuario, como por ejemplo: pulsasiones de teclas, movimientos del mouse, clicks.</p>
+<pre><code class="language-css">.selected {
+  background-color: rebeccapurple;
+  color: white;
+  padding: 1rem;
+}
+
+.unSelected {
+  background-color: white;
+  color: black;
+}
+
+.red {
+  color: red;
+}</code></pre>
+<pre><code class="language-html">&lt;!--app.component.html--&gt;
+&lt;ul&gt;
+  &lt;li
+    *ngFor=&quot;let city of cities&quot;
+    (click)=&quot;onCityClicked(city)&quot;
+    [ngClass]=&quot;{&#39;selected&#39;:city===selection}&quot;
+  &gt;
+    {{city}}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div *ngIf=&quot;selection&quot;&gt;
+  &lt;p&gt;Your city is: {{selection}}&lt;/p&gt;
+  &lt;button (click)=&quot;onClear()&quot;&gt;Clear your selection&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+<pre><code class="language-typescript">//app.component.ts
+name!: string;
+selection!: string;
+cities = [&quot;Barcelona&quot;, &quot;Madrid&quot;, &quot;Lima&quot;];
+
+onCityClicked(city: string):void{
+  console.log(&quot;City -&gt;&quot;, city);
+  this.selection = city;
+}
+onClear():void{
+  this.selection = &quot;&quot;;
+}</code></pre>
+      </section>
+
+      <section>
+        <h2 id="¿qué-es-un-decorador">¿Qué es un decorador?</h2>
+<p>Un decorador es un tipo especial de declaración que se puede adjuntar a una clase, método, descriptor de acc.</p>
+<h3 id="decorador-input">Decorador @Input()</h3>
+<p>El decorador @Input() en un componente (o directiva) hijo significa que la propiedad puede recibir su valor</p>
+<p><img src="./../../assets/images/decorador-input-angular.png" alt="decorador-input"></p>
+<pre><code class="language-console">ng g c button</code></pre>
+<pre><code class="language-html">&lt;!--app.component.html--&gt;
+&lt;ul&gt;
+  &lt;li
+    *ngFor=&quot;let city of cities&quot;
+    (click)=&quot;onCityClicked(city)&quot;
+    [ngClass]=&quot;{&#39;selected&#39;:city===selection}&quot;
+  &gt;
+    {{city}}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div *ngIf=&quot;selection&quot;&gt;
+  &lt;p&gt;Your city is: {{selection}}&lt;/p&gt;
+  &lt;!-- &lt;button (click)=&quot;onClear()&quot;&gt;Clear your selection&lt;/button&gt; --&gt;
+  &lt;app-button
+    (click)=&quot;onClear()&quot;
+    [color]=&quot;&#39;red&#39;&quot;
+    [label]=&quot;&#39;Clear your selection&#39;&quot;
+  &gt;&lt;/app-button&gt;
+&lt;/div&gt;</code></pre>
+<pre><code class="language-typescript">//button.component.ts
+@Component({
+  selector: &quot;app-button&quot;,
+  templateUrl: `&lt;button [ngStyle]=&quot;{&#39;background-color&#39;:color}&quot;&gt;{{label}}&lt;/button&gt;`,
+  styleUrls: [&quot;./button.component.css&quot;],
+})
+export class ButtonComponent implements Onchanges, OnInit, OnDestroy {
+  @Input() color!: string;
+  @Input() label!: string;
+  constructor() {}
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(&quot;Changes-&gt;&quot;, changes);
+  }
+  ngOnInit(): void {
+    console.log(&quot;OnInit&quot;);
+  }
+  ngOnDestroy(): void {
+    console.log(&quot;OnDestroy&quot;);
+  }
+
+  //Para ver el ciclo de vida, abrir la consola del inspector de elementos
+}</code></pre>
+<h3 id="decorador-output">Decorador @Output()</h3>
+<p>El decorador @Output () en un componente (o directiva) hijo permite que los datos fluyan del hijo al padre.</p>
+<p><img src="./../../assets/images/decorador-output-angular.png" alt="decorador-input"></p>
+<pre><code class="language-console">ng g c form-new-item</code></pre>
+<pre><code class="language-typescript">//app.component.ts
+name!: string;
+selection!: string;
+cities = [&quot;Barcelona&quot;, &quot;Madrid&quot;, &quot;Lima&quot;];
+
+addNewCity(city:string):void {
+  this.cities.push(city);
+}
+
+onCityClicked(city: string):void{
+  console.log(&quot;City -&gt;&quot;, city);
+  this.selection = city;
+}
+onClear():void{
+  this.selection = &quot;&quot;;
+}</code></pre>
+<pre><code class="language-html">&lt;!--app.component.html--&gt;
+
+&lt;app-form-new-item
+  (newItemEvent)=&quot;addNewCity($event)&quot;
+  [label]=&quot;&#39;City&#39;&quot;
+  [className]=&quot;&#39;btn-info&#39;&quot;
+&gt;&lt;/app-form-new-item&gt;
+
+&lt;ul&gt;
+  &lt;li
+    *ngFor=&quot;let city of cities&quot;
+    (click)=&quot;onCityClicked(city)&quot;
+    [ngClass]=&quot;{&#39;selected&#39;:city===selection}&quot;
+  &gt;
+    {{city}}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div *ngIf=&quot;selection&quot;&gt;
+  &lt;p&gt;Your city is: {{selection}}&lt;/p&gt;
+  &lt;!-- &lt;button (click)=&quot;onClear()&quot;&gt;Clear your selection&lt;/button&gt; --&gt;
+  &lt;app-button
+    (click)=&quot;onClear()&quot;
+    [color]=&quot;&#39;red&#39;&quot;
+    [label]=&quot;&#39;Clear your selection&#39;&quot;
+  &gt;&lt;/app-button&gt;
+&lt;/div&gt;</code></pre>
+<pre><code class="language-html">&lt;!--form-new-item.component.html--&gt;
+&lt;form&gt;
+  &lt;label for=&quot;newItem&quot;&gt;New {{label}}&lt;/label&gt;
+  &lt;!-- template variable --&gt;
+  &lt;input type=&quot;text&quot; id=&quot;newItem&quot; #newItem /&gt;
+  &lt;button
+    (click)=&quot;onAddNewItem(newItem.value)&quot;
+    type=&quot;button&quot;
+    [ngClass]=&quot;[className]&quot;
+  &gt;
+    Add {{label}}
+  &lt;/button&gt;
+&lt;/form&gt;</code></pre>
+<pre><code class="language-typescript">// form-new-item.component.ts
+import { Component, Input, OnInit, Output, EventEmitter } from &quot;@angular/core&quot;;
+
+@Component({
+  selector: &quot;app-form-new-item&quot;,
+  templateUrl: &quot;./form-new-item.component.html&quot;,
+  styleUrls: [&quot;./form-new-item.component.css&quot;],
+})
+export class FormNewItemComponent {
+  @Input() className!: string;
+  @Input() label!: string;
+
+  @Output() newItemEvent = new EventEmitter&lt;string&gt;();
+
+  onAddNewItem(item: string): void {
+    console.log(&quot;Item&quot;, item);
+    this.newItemEvent.emit(item);
+  }
+}</code></pre>
+<p>Cabe destacar que cuando usamos el decorador @Input se utiliza [ ] para indicarle al componente hijo el valor que se esta pasando, en cambio el decorador @Output utiliza ( ) para capturar el valor emitido y pasrselo al metodo que tiene el componente padre.</p>
       </section>
     </section>
   </main>
