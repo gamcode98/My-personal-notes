@@ -12,6 +12,7 @@ En el siguiente ejemplo, el nombre del evento de destino es click y la instrucci
 Nos permite escuchar y responder a acciones del usuario, como por ejemplo: pulsasiones de teclas, movimientos del mouse, clicks.
 
 ```css
+/* app.component.css */
 .selected {
   background-color: rebeccapurple;
   color: white;
@@ -25,6 +26,21 @@ Nos permite escuchar y responder a acciones del usuario, como por ejemplo: pulsa
 
 .red {
   color: red;
+}
+```
+
+```typescript
+//app.component.ts
+name!: string;
+selection!: string;
+cities = ["Barcelona", "Madrid", "Lima"];
+
+onCityClicked(city: string):void{
+  console.log("City ->", city);
+  this.selection = city;
+}
+onClear():void{
+  this.selection = "";
 }
 ```
 
@@ -44,21 +60,6 @@ Nos permite escuchar y responder a acciones del usuario, como por ejemplo: pulsa
   <p>Your city is: {{selection}}</p>
   <button (click)="onClear()">Clear your selection</button>
 </div>
-```
-
-```typescript
-//app.component.ts
-name!: string;
-selection!: string;
-cities = ["Barcelona", "Madrid", "Lima"];
-
-onCityClicked(city: string):void{
-  console.log("City ->", city);
-  this.selection = city;
-}
-onClear():void{
-  this.selection = "";
-}
 ```
 
 ### Event Binding

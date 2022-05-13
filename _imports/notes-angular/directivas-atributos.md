@@ -20,20 +20,26 @@
 ```
 
 ```html
-<ul *ngFor="let city of cities">
+<ul>
   <!-- ngClass -->
   <!-- Primer forma -->
-  <li [ngClass]="['selected','red']">{{city}}</li>
+  <li *ngFor="let city of cities" [ngClass]="['selected','red']">{{city}}</li>
   <!-- Segunda forma -->
-  <li [ngClass]="'selected red'">{{city}}</li>
+  <li *ngFor="let city of cities" [ngClass]="'selected red'">{{city}}</li>
   <!-- Tercer forma -->
-  <li [ngClass]="{'selected':true}">{{city}}</li>
+  <li *ngFor="let city of cities" [ngClass]="{'selected':true}">{{city}}</li>
   <!-- Con un poco de dinamismo -->
-  <li [ngClass]="{'selected':city === 'Lima', 'red':city !== 'Barcelona'}">
+  <li
+    *ngFor="let city of cities"
+    [ngClass]="{'selected':city === 'Lima', 'red':city !== 'Barcelona'}"
+  >
     {{city}}
   </li>
   <!-- ngStyle -->
-  <li [ngStyle]="{'color':'red', 'background':city==='Madrid'? 'blue':'green'}">
+  <li
+    *ngFor="let city of cities"
+    [ngStyle]="{'color':'red', 'background':city==='Madrid'? 'blue':'green'}"
+  >
     {{city}}
   </li>
   <!-- Es como poner estilos en línea, no muy recomendado -->

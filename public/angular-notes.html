@@ -568,12 +568,12 @@ import { FormsModule } from &#39;@angular/forms&#39;;
 <li>Directivas Customs</li>
 <li>Componentes - Son directivas con template</li>
 </ul>
-<h3 id="ngfor---directiva-estructural">*NgFor - Directiva estructural</h3>
+<h3 id="ngfor---directiva-estructural">*ngFor - Directiva estructural</h3>
 <pre><code class="language-typescript">cities = [&quot;Barcelona&quot;, &quot;Madrid&quot;, &quot;Lima&quot;];</code></pre>
-<pre><code class="language-html">&lt;ul *ngFor=&quot;let city of cities&quot;&gt;
-  &lt;li&gt;{{city}}&lt;/li&gt;
+<pre><code class="language-html">&lt;ul&gt;
+  &lt;li *ngFor=&quot;let city of cities&quot;&gt;{{city}}&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
-<h3 id="ngif---directiva-estructural">*NgIf - Directiva estructural</h3>
+<h3 id="ngif---directiva-estructural">*ngIf - Directiva estructural</h3>
 <pre><code class="language-typescript">//app.component.ts
 //También puede ser cualquier otro componente el archivo
   name!: string;</code></pre>
@@ -599,20 +599,26 @@ import { FormsModule } from &#39;@angular/forms&#39;;
 .red {
   color: red;
 }</code></pre>
-<pre><code class="language-html">&lt;ul *ngFor=&quot;let city of cities&quot;&gt;
+<pre><code class="language-html">&lt;ul&gt;
   &lt;!-- ngClass --&gt;
   &lt;!-- Primer forma --&gt;
-  &lt;li [ngClass]=&quot;[&#39;selected&#39;,&#39;red&#39;]&quot;&gt;{{city}}&lt;/li&gt;
+  &lt;li *ngFor=&quot;let city of cities&quot; [ngClass]=&quot;[&#39;selected&#39;,&#39;red&#39;]&quot;&gt;{{city}}&lt;/li&gt;
   &lt;!-- Segunda forma --&gt;
-  &lt;li [ngClass]=&quot;&#39;selected red&#39;&quot;&gt;{{city}}&lt;/li&gt;
+  &lt;li *ngFor=&quot;let city of cities&quot; [ngClass]=&quot;&#39;selected red&#39;&quot;&gt;{{city}}&lt;/li&gt;
   &lt;!-- Tercer forma --&gt;
-  &lt;li [ngClass]=&quot;{&#39;selected&#39;:true}&quot;&gt;{{city}}&lt;/li&gt;
+  &lt;li *ngFor=&quot;let city of cities&quot; [ngClass]=&quot;{&#39;selected&#39;:true}&quot;&gt;{{city}}&lt;/li&gt;
   &lt;!-- Con un poco de dinamismo --&gt;
-  &lt;li [ngClass]=&quot;{&#39;selected&#39;:city === &#39;Lima&#39;, &#39;red&#39;:city !== &#39;Barcelona&#39;}&quot;&gt;
+  &lt;li
+    *ngFor=&quot;let city of cities&quot;
+    [ngClass]=&quot;{&#39;selected&#39;:city === &#39;Lima&#39;, &#39;red&#39;:city !== &#39;Barcelona&#39;}&quot;
+  &gt;
     {{city}}
   &lt;/li&gt;
   &lt;!-- ngStyle --&gt;
-  &lt;li [ngStyle]=&quot;{&#39;color&#39;:&#39;red&#39;, &#39;background&#39;:city===&#39;Madrid&#39;? &#39;blue&#39;:&#39;green&#39;}&quot;&gt;
+  &lt;li
+    *ngFor=&quot;let city of cities&quot;
+    [ngStyle]=&quot;{&#39;color&#39;:&#39;red&#39;, &#39;background&#39;:city===&#39;Madrid&#39;? &#39;blue&#39;:&#39;green&#39;}&quot;
+  &gt;
     {{city}}
   &lt;/li&gt;
   &lt;!-- Es como poner estilos en línea, no muy recomendado --&gt;
@@ -652,7 +658,8 @@ import { FormsModule } from &#39;@angular/forms&#39;;
 En el siguiente ejemplo, el nombre del evento de destino es click y la instrucción de la plantilla es onSave().</p>
 <p><img src="./../../assets/images/event-binding-angular.png" alt="event-binding"></p>
 <p>Nos permite escuchar y responder a acciones del usuario, como por ejemplo: pulsasiones de teclas, movimientos del mouse, clicks.</p>
-<pre><code class="language-css">.selected {
+<pre><code class="language-css">/* app.component.css */
+.selected {
   background-color: rebeccapurple;
   color: white;
   padding: 1rem;
@@ -665,6 +672,18 @@ En el siguiente ejemplo, el nombre del evento de destino es click y la instrucci
 
 .red {
   color: red;
+}</code></pre>
+<pre><code class="language-typescript">//app.component.ts
+name!: string;
+selection!: string;
+cities = [&quot;Barcelona&quot;, &quot;Madrid&quot;, &quot;Lima&quot;];
+
+onCityClicked(city: string):void{
+  console.log(&quot;City -&gt;&quot;, city);
+  this.selection = city;
+}
+onClear():void{
+  this.selection = &quot;&quot;;
 }</code></pre>
 <pre><code class="language-html">&lt;!--app.component.html--&gt;
 &lt;ul&gt;
@@ -681,18 +700,6 @@ En el siguiente ejemplo, el nombre del evento de destino es click y la instrucci
   &lt;p&gt;Your city is: {{selection}}&lt;/p&gt;
   &lt;button (click)=&quot;onClear()&quot;&gt;Clear your selection&lt;/button&gt;
 &lt;/div&gt;</code></pre>
-<pre><code class="language-typescript">//app.component.ts
-name!: string;
-selection!: string;
-cities = [&quot;Barcelona&quot;, &quot;Madrid&quot;, &quot;Lima&quot;];
-
-onCityClicked(city: string):void{
-  console.log(&quot;City -&gt;&quot;, city);
-  this.selection = city;
-}
-onClear():void{
-  this.selection = &quot;&quot;;
-}</code></pre>
 <h3 id="event-binding-1">Event Binding</h3>
 <pre><code class="language-html">&lt;!--Archivo app.component.html--&gt;
 &lt;h1&gt;Eventos&lt;/h1&gt;
@@ -792,6 +799,7 @@ export class AppComponent {
 <h3 id="decorador-input">Decorador @Input()</h3>
 <p>El decorador @Input() en un componente (o directiva) hijo significa que la propiedad puede recibir su valor</p>
 <p><img src="./../../assets/images/decorador-input-angular.png" alt="decorador-input"></p>
+<p>Como ejemplo se crea un componente llamado <strong>button</strong></p>
 <pre><code class="language-console">ng g c button</code></pre>
 <pre><code class="language-html">&lt;!--app.component.html--&gt;
 &lt;ul&gt;
@@ -807,6 +815,7 @@ export class AppComponent {
 &lt;div *ngIf=&quot;selection&quot;&gt;
   &lt;p&gt;Your city is: {{selection}}&lt;/p&gt;
   &lt;!-- &lt;button (click)=&quot;onClear()&quot;&gt;Clear your selection&lt;/button&gt; --&gt;
+  &lt;!-- Se inyecta el componente creado --&gt;
   &lt;app-button
     (click)=&quot;onClear()&quot;
     [color]=&quot;&#39;red&#39;&quot;
@@ -816,7 +825,9 @@ export class AppComponent {
 <pre><code class="language-typescript">//button.component.ts
 @Component({
   selector: &quot;app-button&quot;,
-  templateUrl: `&lt;button [ngStyle]=&quot;{&#39;background-color&#39;:color}&quot;&gt;{{label}}&lt;/button&gt;`,
+  template: `&lt;button [ngStyle]=&quot;{ &#39;background-color&#39;: color }&quot;&gt;
+    {{ label }}
+  &lt;/button&gt;`,
   styleUrls: [&quot;./button.component.css&quot;],
 })
 export class ButtonComponent implements Onchanges, OnInit, OnDestroy {
@@ -838,6 +849,7 @@ export class ButtonComponent implements Onchanges, OnInit, OnDestroy {
 <h3 id="decorador-output">Decorador @Output()</h3>
 <p>El decorador @Output () en un componente (o directiva) hijo permite que los datos fluyan del hijo al padre.</p>
 <p><img src="./../../assets/images/decorador-output-angular.png" alt="decorador-input"></p>
+<p>Como ejemplo se crea un componente llamado <strong>form-new-item</strong></p>
 <pre><code class="language-console">ng g c form-new-item</code></pre>
 <pre><code class="language-typescript">//app.component.ts
 name!: string;
@@ -916,6 +928,47 @@ export class FormNewItemComponent {
 }</code></pre>
 <p>Cabe destacar que cuando usamos el decorador @Input se utiliza [ ] para indicarle al componente hijo el valor que se esta pasando, en cambio el decorador @Output utiliza ( ) para capturar el valor emitido y pasrselo al metodo que tiene el componente padre.</p>
       </section>
+
+      <section>
+        <h2 id="pipes">Pipes</h2>
+<p>Los pipes son una herramienta de Angular que nos permite transformar visualmente la información, por ejemplo, cambiar un texto a mayúsculas o minúsculas, o darle formato de fecha y hora. Los pipes reciben un dato, y pueden transformar ese dato. Entonces, se puede decir que su cometido principal es transformar data.</p>
+<h3 id="los-pipes-pueden-ser-puros-o-impuros">Los pipes pueden ser puros o impuros</h3>
+<p>De forma predeterminada, los pipes, se definen como puros, de modo que Angular ejecuta el Pipe solo cuando detecta un cambio puro en el valor de entrada. Mientras que los pipes que son impuros cada vez que se ejecuta el ciclo de detección de cambios en angular, el volverá a transformar esa data aunque esa data no haya cambiado.</p>
+<h3 id="pipes-propios-de-angular">Pipes propios de Angular</h3>
+<p>Ejemplo:</p>
+<pre><code class="language-html">&lt;p&gt;{{&#39;6/1/15, 9:03 AM&#39; | date:&#39;full&#39;}}&lt;/p&gt;
+&lt;p&gt;My birhtday: {{&#39;6/1/15, 9:03 AM&#39; | date:&#39;short&#39; | uppercase}}&lt;/p&gt;
+&lt;p&gt;My birhtday: {{&#39;99&#39; | currency:&#39;EUR&#39; }}&lt;/p&gt;
+&lt;p&gt;My birhtday: {{&#39;99&#39; | currency:&#39;ARG&#39; }}&lt;/p&gt;</code></pre>
+<h3 id="pipes-personalizados">Pipes personalizados</h3>
+<p>Ver documentación:</p>
+<pre><code class="language-console">ng g pipe filter</code></pre>
+<pre><code class="language-typescript">//filter.ts
+import { Pipe, PipeTransform } from &quot;@angular/core&quot;;
+
+@Pipe({
+  name: &quot;filter&quot;,
+})
+export class FilterPipe implements PipeTransform {
+  transform(value: string[], arg: string): string[] {
+    let result: string[] = [];
+
+    for (const value of values) {
+      if (value.indexOf(arg) &gt; -1) {
+        result = [...result, value];
+      }
+    }
+    return result;
+  }
+}</code></pre>
+<pre><code class="language-html">&lt;!--app.component.ts--&gt;
+&lt;input type=&quot;text&quot; [(ngModel)]=&quot;criterio&quot; /&gt;</code></pre>
+<pre><code class="language-typescript">// app.component.ts
+export class AppComponent {
+  criterio = &quot;&quot;;
+}</code></pre>
+      </section>
+
     </section>
   </main>
 

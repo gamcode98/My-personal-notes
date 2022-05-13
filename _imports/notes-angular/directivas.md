@@ -11,19 +11,19 @@ Las directivas son como atributos que pueden cambiar la apariencia o el comporta
 - Directivas Customs
 - Componentes - Son directivas con template
 
-### \*NgFor - Directiva estructural
+### \*ngFor - Directiva estructural
 
 ```typescript
 cities = ["Barcelona", "Madrid", "Lima"];
 ```
 
 ```html
-<ul *ngFor="let city of cities">
-  <li>{{city}}</li>
+<ul>
+  <li *ngFor="let city of cities">{{city}}</li>
 </ul>
 ```
 
-### \*NgIf - Directiva estructural
+### \*ngIf - Directiva estructural
 
 ```typescript
 //app.component.ts

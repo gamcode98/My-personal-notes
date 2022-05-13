@@ -65,6 +65,9 @@
     <section id="section-main">
       <section>
         <h2 id="básicos">Básicos</h2>
+<h3 id="configurar-quien-soy">Configurar quien soy</h3>
+<pre><code class="language-console">git config --global user.name &quot;Michi&quot;
+git config --global user.email &quot;michi@gmail.com&quot;</code></pre>
 <h3 id="listar-ramas-existentes-git-branch">Listar ramas existentes: <code>git branch</code></h3>
 <p>Ejemplo:</p>
 <pre><code class="language-console">git branch
@@ -86,6 +89,27 @@ Switched to branch &#39;feature&#39;</code></pre>
 <p>Se debe usar la opción <strong>-c</strong>.</p>
 <pre><code class="language-console">git switch -c new-feature
 Switched to a new branch &#39;new-feature&#39;</code></pre>
+<h3 id="seleccionar-que-agregar-o-no">Seleccionar que agregar o no</h3>
+<p>Se puede usar:</p>
+<pre><code class="language-console">git add -p</code></pre>
+<h3 id="ver-el-historial-de-cambios">Ver el historial de cambios</h3>
+<pre><code class="language-console">git log</code></pre>
+<h3 id="agregar-todo-lo-modificado">Agregar todo lo modificado</h3>
+<pre><code class="language-console">git add -A</code></pre>
+<p>Otra manera:</p>
+<pre><code class="language-console">git add .</code></pre>
+<h3 id="cambiar-a-un-commit-particular">Cambiar a un commit particular</h3>
+<p>Primero se realiza un <code>git log</code> para elegir el commit al que se quiere ir. Luego se ingresa el siguiente comando
+Donde <strong>&lt;commit&gt;</strong> es el elegido del comando anterior.</p>
+<pre><code class="language-console">git checkout &lt;commit&gt;</code></pre>
+<h3 id="borrar-un-archivo">Borrar un archivo</h3>
+<p>Donde <strong>&lt;archivo&gt;</strong> es el archivo a eliminar.</p>
+<pre><code class="language-console">git rm &lt;archivo&gt;</code></pre>
+<h3 id="restaurar-un-archivo-eliminado">Restaurar un archivo eliminado</h3>
+<p>Primero:</p>
+<pre><code class="language-console">git reset HEAD &lt;archivo&gt;</code></pre>
+<p>Segundo:</p>
+<pre><code class="language-console">git checkout &lt;archivo&gt;</code></pre>
       </section>
 
       <section>

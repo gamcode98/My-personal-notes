@@ -8,6 +8,8 @@ El decorador @Input() en un componente (o directiva) hijo significa que la propi
 
 ![decorador-input](./../../assets/images/decorador-input-angular.png)
 
+Como ejemplo se crea un componente llamado **button**
+
 ```console
 ng g c button
 ```
@@ -27,6 +29,7 @@ ng g c button
 <div *ngIf="selection">
   <p>Your city is: {{selection}}</p>
   <!-- <button (click)="onClear()">Clear your selection</button> -->
+  <!-- Se inyecta el componente creado -->
   <app-button
     (click)="onClear()"
     [color]="'red'"
@@ -39,7 +42,9 @@ ng g c button
 //button.component.ts
 @Component({
   selector: "app-button",
-  templateUrl: `<button [ngStyle]="{'background-color':color}">{{label}}</button>`,
+  template: `<button [ngStyle]="{ 'background-color': color }">
+    {{ label }}
+  </button>`,
   styleUrls: ["./button.component.css"],
 })
 export class ButtonComponent implements Onchanges, OnInit, OnDestroy {
@@ -65,6 +70,8 @@ export class ButtonComponent implements Onchanges, OnInit, OnDestroy {
 El decorador @Output () en un componente (o directiva) hijo permite que los datos fluyan del hijo al padre.
 
 ![decorador-input](./../../assets/images/decorador-output-angular.png)
+
+Como ejemplo se crea un componente llamado **form-new-item**
 
 ```console
 ng g c form-new-item
