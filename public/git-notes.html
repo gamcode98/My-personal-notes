@@ -113,37 +113,90 @@ Donde <strong>&lt;commit&gt;</strong> es el elegido del comando anterior.</p>
       </section>
 
       <section>
-        <!-- <h2 id="utilidades">Utilidades</h2>
-<h3 id="crear-un-modal-nativo-con-html">Crear un modal nativo con html</h3>
-<pre><code class="language-html">&lt;dialog&gt;
-  &lt;h1&gt;¿Sabías abrir modales así?&lt;/h1&gt;
-  &lt;p&gt;¡Y es totalmente nativo!&lt;/p&gt;
-  &lt;button id=&quot;cancel&quot;&gt;Cerrar&lt;/button&gt;
-&lt;/dialog&gt;
+        <h2 id="arreglar-un-pull-request-con-conflictos">Arreglar un pull request con conflictos</h2>
+<h3 id="estado-inicial">Estado inicial</h3>
+<p><img src="./../../assets/images/img-git-conflict.png" alt="git-conflict"></p>
+<p>Supongamos que en la rama <strong>feature</strong> se está modificando un archivo tal como <strong>app.js</strong> que contenía el siguiente código de <strong>master</strong></p>
+<pre><code class="language-javascript">//app.js código inicial
 
-&lt;button id=&quot;show&quot;&gt;Abrir modal&lt;/button&gt;</code></pre>
-<pre><code class="language-javascript">const d = document;
-const $dialog = d.querySelector(&quot;dialog&quot;);
-const $show = d.querySelector(&#39;#show&#39;)
-const $cancel d.querySelector(&#39;#cancel&#39;)
+const express = require(&quot;express&quot;);
+const { port } = require(&quot;./config&quot;);
+const { connection } = require(&quot;./config/db&quot;);
 
-$show.addEventListener(&#39;click&#39;, () = $dialog.showModal())
-$cancel.addEventListener(&#39;click&#39;, () = $dialog.close())</code></pre>
-<p>Ver ejemplo en la documentación de MDN: <a href="https://developer.mozilla.org/es/docs/Web/HTML/Element/dialog">modal</a></p>
-<h3 id="recuperar-los-datos-de-un-formulario">Recuperar los datos de un formulario</h3>
-<pre><code class="language-html">&lt;form&gt;
-  &lt;input type=&quot;email&quot; placeholder=&quot;Ingresa tu correo&quot; required /&gt;
-  &lt;br /&gt;
-  &lt;input type=&quot;password&quot; placeholder=&quot;Ingresa tu contraseña&quot; required /&gt;
-  &lt;br /&gt;
-  &lt;input type=&quot;submit&quot; value=&quot;Enviar&quot; /&gt;
-&lt;/form&gt;</code></pre>
-<pre><code class="language-javascript">const d = document;
-d.querySelector(&quot;form&quot;).addEventListener(&quot;submit&quot;, (e) =&gt; {
-  e.preventDefault();
-  const data = Object.fromEntries(new FormData(e.target));
-  alert(JSON.stringify(data));
-});</code></pre> -->
+
+connection();
+
+const app = express();
+
+app.use(express.json());
+
+
+
+app.listen(port, () =&gt; {
+  console.log(`Listening on port: ${port}`);
+});</code></pre>
+<p>Se procede a modifcar el archivo quedando al final tal como: </p>
+<pre><code class="language-javascript">//app.js código modificado desde rama feature
+
+const express = require(&quot;express&quot;);
+const { port } = require(&quot;./config&quot;);
+const { connection } = require(&quot;./config/db&quot;);
+const auth = require(&quot;./routes/auth.routes&quot;); //agregado desde rama feature
+const offers = require(&quot;./routes/offer.routes&quot;); //agregado desde rama feature
+const users = require(&quot;./routes/user.routes&quot;); //agregado desde rama feature
+
+connection();
+
+const app = express();
+
+app.use(express.json());
+
+users(app); //agregado desde rama feature
+auth(app); //agregado desde rama feature
+offers(app); //agregado desde rama feature
+
+app.listen(port, () =&gt; {
+  console.log(`Listening on port: ${port}`);
+});</code></pre>
+<p>Paralelamente se está modificando el archivo <strong>app.js</strong> directamente desde <strong>master</strong> en las mismas líneas pero diferente código</p>
+<pre><code class="language-javascript">//app.js código modificado desde rama master
+
+const express = require(&quot;express&quot;);
+const { port } = require(&quot;./config&quot;);
+const { connection } = require(&quot;./config/db&quot;);
+const jobs = require(&quot;./routes/jobs.routes&quot;); //agregado desde rama master
+const categories = require(&quot;./routes/categories.routes&quot;); //agregado desde rama master
+const countries = require(&quot;./routes/countries.routes&quot;); //agregado desde rama master
+
+connection();
+
+const app = express();
+
+app.use(express.json());
+
+jobs(app); //agregado desde rama master
+categories(app); //agregado desde rama master
+countries(app); //agregado desde rama master
+
+app.listen(port, () =&gt; {
+  console.log(`Listening on port: ${port}`);
+});</code></pre>
+<p>Ahora se quiere unificar las ramas, por lo tanto se procede a hacer el <strong>pull request</strong> de la rama <strong>feature</strong> a <strong>master</strong></p>
+<p><img src="./../../assets/images/img-git-conflict-2.png" alt="git-conflict"></p>
+<p>En github nos muestra el siguiente mensaje</p>
+<p><img src="./../../assets/images/img-git-conflict-3.png" alt="git-conflict"></p>
+<p>Github da la posibilidad de arreglar el conflicto desde su web. Pero se lo puede trabajar localmente. </p>
+<p>Primero desde la pc local desde la rama <strong>master</strong> se ejecuta <code>git pull origin master</code> para traer los cambios que no tenia el repo local.</p>
+<p>Luego hay que situarse en la rama conflictiva en este caso es <strong>feature</strong> y ejecutar <code>git merge master</code></p>
+<p>Graficamente sería:</p>
+<p><img src="./../../assets/images/img-git-conflict-5.png" alt="git-conflict"></p>
+<p>Luego de arreglado el conflicto </p>
+<p><img src="./../../assets/images/img-git-conflict-6.png" alt="git-conflict"></p>
+<p>Inmediatamente después de ejecutar el comando <code>git merge master</code> en la rama <strong>feature</strong>, <strong>Visual Studio Code</strong> nos ayuda con posibles soluciones. Las cuales aparecen abajo de la línea 3 y línea 19 en este caso.</p>
+<p><img src="./../../assets/images/img-git-conflict-4.png" alt="git-conflict"></p>
+<p>Se corrige el código. Se procede a realizar el correspondiente commit con su push a su respectiva rama y por último se procede a realizar el merge.</p>
+<p>Grafica que brinda github, en la sección de <strong>insights</strong></p>
+<p><img src="./../../assets/images/img-git-conflict-7.png" alt="git-conflict"></p>
       </section>
     </section>
   </main>
