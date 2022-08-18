@@ -10,6 +10,11 @@ const cardsContent = [
     link: "./typescript-notes.html",
   },
   {
+    title: "Docker",
+    img: "./assets/images/docker-icon.svg",
+    link: "./docker-notes.html",
+  },
+  {
     title: "Node JS",
     img: "./assets/images/nodejs-icon.svg",
     link: "./nodejs-notes.html",

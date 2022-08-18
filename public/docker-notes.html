@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Iconscout -->
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="./css/notes.css">
+<!-- Highlight style sheet -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css"
+  integrity="sha512-Jk4AqjWsdSzSWCSuQTfYRIF84Rq/eV0G2+tu07byYwHcbTGfdmLrHjUSwvzp5HvbiqK4ibmNwdcG49Y5RGYPTg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+<title>Notes-Docker</title>
+  </head>
+
+  <body>
+    <header class="header">
+  <div class="header-menu">
+    <a href="./index.html" class="nav-logo">Gamcode</a>
+    <div class="header-btns">
+      <a href="#" title="Theme" id="icon-theme">
+        <i class="uil uil-moon icon-img"></i>
+      </a>
+      <a href="#" title="Menu" id="icon-menu">
+        <i class="uil uil-apps icon-img"></i>
+      </a>
+    </div>
+  </div>
+  <nav class="nav-menu">
+    <ul class="nav-items">
+      <li>
+        <a href="#" title="Buy me a coffee">
+          <i class="uil uil-coffee icon-img"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" title="Portfolio">
+          <i class="uil uil-suitcase icon-img"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" title="GitHub">
+          <i class="uil uil-github icon-img"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" title="Linkedin">
+          <i class="uil uil-linkedin icon-img"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+    <main>
+      <section id="section-main">
+        <section>
+          <ul>
+<li><p><strong>Notas:</strong></p>
+<p>Los símbolos <strong>&lt; &gt;</strong> deben ser ignorados al escribir los comandos.</p>
+<p>Cuando se coloca un <strong>pipe</strong> en medio de los símbolos <strong>&lt;&gt;</strong> significa que se puede usar una u otras opciones si es que las hubiese.</p>
+</li>
+</ul>
+<h2 id="comandos-de-docker">Comandos de docker</h2>
+<h3 id="ver-los-contenedores-corriendo">Ver los contenedores corriendo:</h3>
+<pre><code class="language-console">docker ps</code></pre>
+<h3 id="ver-todos-los-contenedores-">Ver todos los contenedores :</h3>
+<pre><code class="language-console">docker ps -a</code></pre>
+<h3 id="inspeccionar-un-contenedor">Inspeccionar un contenedor:</h3>
+<pre><code class="language-console">docker inspect &lt;ID&gt;</code></pre>
+<p>También funciona con el <strong>name</strong> que es un forma mas amigable de escribir el comando</p>
+<pre><code class="language-console">docker inspect &lt;name&gt;</code></pre>
+<h3 id="descargar-una-imagen-de-docker-hub">Descargar una imagen de docker-hub:</h3>
+<pre><code class="language-console">docker run &lt;nombre-imagen&gt;</code></pre>
+<h3 id="renombrar-un-contenedor-cuando-se-descarga">Renombrar un contenedor cuando se descarga:</h3>
+<pre><code class="language-console">docker run --name &lt;cualquier-nombre-aqui&gt; &lt;imagen-de-docker&gt;</code></pre>
+<h3 id="renombrar-el-nombre-de-un-contenedor">Renombrar el nombre de un contenedor:</h3>
+<pre><code class="language-console">docker rename &lt;nombre-anterior&gt; &lt;nombre-nuevo&gt;</code></pre>
+<h3 id="eliminar-un-contenedor">Eliminar un contenedor:</h3>
+<pre><code class="language-console">docker rm &lt;nombre-contenedor | ID&gt;</code></pre>
+<h3 id="eliminar-todos-los-contenedores-que-están-parados">Eliminar todos los contenedores que están parados:</h3>
+<pre><code class="language-console">docker container prune</code></pre>
+<h3 id="para-detener-un-contenedor-que-está-corriendo">Para detener un contenedor que está corriendo:</h3>
+<pre><code class="language-console">docker stop &lt;nombre-contendor | ID&gt;</code></pre>
+<h3 id="eliminar-un-contenedor-aunque-esté-corriendo">Eliminar un contenedor aunque esté corriendo:</h3>
+<pre><code class="language-console">docker rm -f &lt;nombre-contenedor&gt;</code></pre>
+<h3 id="ingresar-con-el-modo-interactivo-en-un-contenedor">Ingresar con el modo interactivo en un contenedor:</h3>
+<pre><code class="language-console">docker run -it &lt;nombre-image&gt;</code></pre>
+<h3 id="correr-una-imagen-en-segundo-plano">Correr una imagen en segundo plano:</h3>
+<ul>
+<li>La opción <strong>-d</strong> ó <strong>--detach</strong> es lo que lo hace correr en <strong>background</strong></li>
+</ul>
+<pre><code class="language-console">docker run --name &lt;nuevo-nombre&gt; -d &lt;imagen&gt; tail -f /dev/null</code></pre>
+<h3 id="ingresar-al-contenedor-que-está-en-segundo-plano">Ingresar al contenedor que está en segundo plano:</h3>
+<pre><code class="language-console">docker exec -it &lt;nombre-contenedor&gt; console</code></pre>
+<h3 id="matar-un-contenedor-con-kill">Matar un contenedor con kill:</h3>
+<pre><code class="language-console">docker inspect --format &#39;{{.State.Pid}}&#39; &lt;nombre-contenedor&gt;
+#Devuelve el process id, entonces ...
+kill -9 &lt;id-process&gt;</code></pre>
+<h3 id="configurar-un-puerto-de-un-contenedor">Configurar un puerto de un contenedor:</h3>
+<ul>
+<li>Donde el primer puerto es el de la maquina anfitriona y el segundo es el del contenedor.</li>
+</ul>
+<pre><code class="language-console">docker run --name &lt;nombre-contenedor&gt; -d -p 8080:80 &lt;imagen&gt;</code></pre>
+<h3 id="para-ver-los-logs-de-un-contenedor-que-está-corriendo-en-segundo-plano">Para ver los <strong>logs</strong> de un contenedor que está corriendo en segundo plano:</h3>
+<pre><code class="language-console">docker logs &lt;nombre-contenedor&gt;
+docker logs -f &lt;nombre-contenedor&gt; # -f para ver los logs en tiempo real
+docker logs -f --tail 10 &lt;nombre-contenedor&gt; # para ver solo los últimos logs</code></pre>
+        </section>
+      </section>
+    </main>
+
+    <template id="template-summary">
+      <section>
+        <header>
+          <h1 class="neon docker">Docker</h1>
+        </header>
+      </section>
+    </template>
+    <!-- Button scroll top -->
+<button class="scroll-top-btn hidden">⬆</button>
+<!-- Custom JS  -->
+<script src="./../js/index.js" type="module"></script>
+<!-- Highlight JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <sergey-import src="components/head-notes">
+      <title>Notes-Docker</title>
+    </sergey-import>
+  </head>
+
+  <body>
+    <sergey-import src="components/header" />
+    <main>
+      <section id="section-main">
+        <section>
+          <sergey-import src="notes-docker/docker" as="markdown" />
+        </section>
+      </section>
+    </main>
+
+    <template id="template-summary">
+      <section>
+        <header>
+          <h1 class="neon docker">Docker</h1>
+        </header>
+      </section>
+    </template>
+    <sergey-import src="functionalities/functionalities" />
+  </body>
+</html>
