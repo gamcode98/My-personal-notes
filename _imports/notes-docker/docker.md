@@ -89,7 +89,7 @@ docker run --name <nuevo-nombre> -d <imagen> tail -f /dev/null
 ### Ingresar al contenedor que está en segundo plano:
 
 ```console
-docker exec -it <nombre-contenedor> console
+docker exec -it <nombre-contenedor> bash
 ```
 
 ### Matar un contenedor con kill:
