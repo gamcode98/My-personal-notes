@@ -115,3 +115,50 @@ docker logs <nombre-contenedor>
 docker logs -f <nombre-contenedor> # -f para ver los logs en tiempo real
 docker logs -f --tail 10 <nombre-contenedor> # para ver solo los últimos logs
 ```
+
+## Redes
+
+### Listar redes
+
+```console
+docker network ls
+```
+
+### Crear una red en docker
+
+```console
+docker network create <nombre-de-red>
+```
+
+### Inspeccionar una red
+
+```console
+sudo docker inspect <nombre-de-red>
+```
+
+### Borrar una red
+
+```console
+docker network rm <nombre-red>
+```
+
+### Conectarse a una red con una imagen
+
+Primero descargar las imagenes:
+`docker pull mongo` y `docker pull mongo-express`
+
+```console
+sudo docker run --name some-mongo -p 27017:27017 --network=<nombre-red> -d mongo
+```
+
+```console
+docker run -d --name clientewebmongo --network=mi-red -e ME_CONFIG_MONGODB_SERVER=some-mongo -p 8081:8081 mongo-express
+```
+
+## Commits
+
+Permite crear una imagen a partir de un container
+
+```console
+docker commit -m "message of commit" <nombre-imagen>
+```
