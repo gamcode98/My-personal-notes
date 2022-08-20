@@ -6,6 +6,14 @@
 
 ## Comandos de docker
 
+### Para usuarios de linux, para poder usar sus comandos sin usar sudo
+
+Después de ejecutar este comando hay que reiniciar la pc.
+
+```console
+sudo usermod -aG docker $USER
+```
+
 ### Ver los contenedores corriendo:
 
 ```console
@@ -161,4 +169,14 @@ Permite crear una imagen a partir de un container
 
 ```console
 docker commit -m "message of commit" <nombre-imagen>
+```
+
+## Bid mounts
+
+Persistir datos de los contenedores en la maquina anfitriona (ejemplo usando mongo)
+Se indica en donde se van a guardar los datos del contenedor (izq) y el lado (der) indica en donde se guarda los datos del contenedor.
+
+```console
+docker run -d --name db -v /home/gabriel/docker-data/mongodata:/data/db mongo
+
 ```
