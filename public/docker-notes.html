@@ -70,6 +70,9 @@
 </li>
 </ul>
 <h2 id="comandos-de-docker">Comandos de docker</h2>
+<h3 id="para-usuarios-de-linux-para-poder-usar-sus-comandos-sin-usar-sudo">Para usuarios de linux, para poder usar sus comandos sin usar sudo</h3>
+<p>Después de ejecutar este comando hay que reiniciar la pc.</p>
+<pre><code class="language-console">sudo usermod -aG docker $USER</code></pre>
 <h3 id="ver-los-contenedores-corriendo">Ver los contenedores corriendo:</h3>
 <pre><code class="language-console">docker ps</code></pre>
 <h3 id="ver-todos-los-contenedores-">Ver todos los contenedores :</h3>
@@ -100,7 +103,7 @@
 </ul>
 <pre><code class="language-console">docker run --name &lt;nuevo-nombre&gt; -d &lt;imagen&gt; tail -f /dev/null</code></pre>
 <h3 id="ingresar-al-contenedor-que-está-en-segundo-plano">Ingresar al contenedor que está en segundo plano:</h3>
-<pre><code class="language-console">docker exec -it &lt;nombre-contenedor&gt; console</code></pre>
+<pre><code class="language-console">docker exec -it &lt;nombre-contenedor&gt; bash</code></pre>
 <h3 id="matar-un-contenedor-con-kill">Matar un contenedor con kill:</h3>
 <pre><code class="language-console">docker inspect --format &#39;{{.State.Pid}}&#39; &lt;nombre-contenedor&gt;
 #Devuelve el process id, entonces ...
@@ -114,6 +117,48 @@ kill -9 &lt;id-process&gt;</code></pre>
 <pre><code class="language-console">docker logs &lt;nombre-contenedor&gt;
 docker logs -f &lt;nombre-contenedor&gt; # -f para ver los logs en tiempo real
 docker logs -f --tail 10 &lt;nombre-contenedor&gt; # para ver solo los últimos logs</code></pre>
+<h2 id="redes">Redes</h2>
+<h3 id="listar-redes">Listar redes</h3>
+<pre><code class="language-console">docker network ls</code></pre>
+<h3 id="crear-una-red-en-docker">Crear una red en docker</h3>
+<pre><code class="language-console">docker network create &lt;nombre-de-red&gt;</code></pre>
+<h3 id="inspeccionar-una-red">Inspeccionar una red</h3>
+<pre><code class="language-console">sudo docker inspect &lt;nombre-de-red&gt;</code></pre>
+<h3 id="borrar-una-red">Borrar una red</h3>
+<pre><code class="language-console">docker network rm &lt;nombre-red&gt;</code></pre>
+<h3 id="conectarse-a-una-red-con-una-imagen">Conectarse a una red con una imagen</h3>
+<p>Primero descargar las imagenes:
+<code>docker pull mongo</code> y <code>docker pull mongo-express</code></p>
+<pre><code class="language-console">sudo docker run --name some-mongo -p 27017:27017 --network=&lt;nombre-red&gt; -d mongo</code></pre>
+<pre><code class="language-console">docker run -d --name clientewebmongo --network=mi-red -e ME_CONFIG_MONGODB_SERVER=some-mongo -p 8081:8081 mongo-express</code></pre>
+<h2 id="commits">Commits</h2>
+<p>Permite crear una imagen a partir de un container</p>
+<pre><code class="language-console">docker commit -m &quot;message of commit&quot; &lt;nombre-imagen&gt;</code></pre>
+<h2 id="bid-mounts">Bid mounts</h2>
+<p>Se comparte un directorio o ruta con un contenedor</p>
+<p>Persistir datos de los contenedores en la maquina anfitriona (ejemplo usando mongo)
+Se indica en donde se van a guardar los datos del contenedor (izq) y el lado (der) indica en donde se guarda los datos del contenedor.</p>
+<pre><code class="language-console">docker run -d --name db -v /home/gabriel/docker-data/mongodata:/data/db mongo
+</code></pre>
+<h2 id="volumenes">Volumenes</h2>
+<h3 id="crear-un-volumen">Crear un volumen</h3>
+<pre><code class="language-console">docker volume create dbdata</code></pre>
+<h3 id="listar-volumenes">Listar volumenes</h3>
+<pre><code class="language-console">docker volume ls</code></pre>
+<h3 id="montar-un-volumen">Montar un volumen</h3>
+<p>En <strong>src</strong> se coloca el nombre del volumen que se quiere montar y en <strong>dst</strong> se coloca el path en donde se quiere montar</p>
+<pre><code class="language-console">docker run -d --name db --mount src=dbdata,dst=/data/db mongo</code></pre>
+<h2 id="insertar-y-extrar-archivos-de-un-contenedor">Insertar y extrar archivos de un contenedor</h2>
+<h3 id="copiar-un-archivo-a-un-contenedor">Copiar un archivo a un contenedor</h3>
+<p>No hace falta que el contenedor esté corriendo para poder copiar o extraer archivos del mismo.</p>
+<p>Ejemplo:</p>
+<pre><code class="language-console">touch prueba.txt  #se crea un archivo de prueba
+docker run -d name copytest ubuntu tail -f /dev/null #se corre el contenedor
+docker exec -it copytest bash #se ingresa en el contenedor
+mkdir testing #se crea una carpeta dentro del contenedor
+docker cp prueba.txt copytest:/testing/test.txt #se copia el archivo prueba.txt en el contenedor copytest en la carpeta testing con el nombre test.txt</code></pre>
+<h3 id="extraer-una-carpeta-de-un-contenedor">Extraer una carpeta de un contenedor</h3>
+<pre><code class="language-console">docker cp copytest:/testing localtesting #se copia la carpeta testing del contenedor copytest en la carpeta actual con el nombre localtesting</code></pre>
         </section>
       </section>
     </main>

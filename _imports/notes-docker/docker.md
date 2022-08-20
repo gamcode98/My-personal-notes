@@ -173,10 +173,56 @@ docker commit -m "message of commit" <nombre-imagen>
 
 ## Bid mounts
 
+Se comparte un directorio o ruta con un contenedor
+
 Persistir datos de los contenedores en la maquina anfitriona (ejemplo usando mongo)
 Se indica en donde se van a guardar los datos del contenedor (izq) y el lado (der) indica en donde se guarda los datos del contenedor.
 
 ```console
 docker run -d --name db -v /home/gabriel/docker-data/mongodata:/data/db mongo
 
+```
+
+## Volumenes
+
+### Crear un volumen
+
+```console
+docker volume create dbdata
+```
+
+### Listar volumenes
+
+```console
+docker volume ls
+```
+
+### Montar un volumen
+
+En **src** se coloca el nombre del volumen que se quiere montar y en **dst** se coloca el path en donde se quiere montar
+
+```console
+docker run -d --name db --mount src=dbdata,dst=/data/db mongo
+```
+
+## Insertar y extrar archivos de un contenedor
+
+### Copiar un archivo a un contenedor
+
+No hace falta que el contenedor esté corriendo para poder copiar o extraer archivos del mismo.
+
+Ejemplo:
+
+```console
+touch prueba.txt  #se crea un archivo de prueba
+docker run -d name copytest ubuntu tail -f /dev/null #se corre el contenedor
+docker exec -it copytest bash #se ingresa en el contenedor
+mkdir testing #se crea una carpeta dentro del contenedor
+docker cp prueba.txt copytest:/testing/test.txt #se copia el archivo prueba.txt en el contenedor copytest en la carpeta testing con el nombre test.txt
+```
+
+### Extraer una carpeta de un contenedor
+
+```console
+docker cp copytest:/testing localtesting #se copia la carpeta testing del contenedor copytest en la carpeta actual con el nombre localtesting
 ```
