@@ -226,3 +226,23 @@ docker cp prueba.txt copytest:/testing/test.txt #se copia el archivo prueba.txt 
 ```console
 docker cp copytest:/testing localtesting #se copia la carpeta testing del contenedor copytest en la carpeta actual con el nombre localtesting
 ```
+
+## Imagenes
+
+### Listar imagenes
+
+```console
+docker image ls
+```
+
+### Crear una imagen
+
+Breve descripción de las opciones
+
+`-m` permite escribir un mensaje.
+`-a` sirve para dejar el nombre del autor.
+`3141fa004aa0` es el ID del container.
+
+```console
+docker commit -m "tp01" -a "Gabriel Alejandro Mamani" 3141fa004aa0 tp1-completo:v1
+```
