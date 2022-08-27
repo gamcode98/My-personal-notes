@@ -176,16 +176,29 @@ docker commit -m "message of commit" <nombre-imagen>
 Se comparte un directorio o ruta con un contenedor
 
 Persistir datos de los contenedores en la maquina anfitriona (ejemplo usando mongo)
-Se indica en donde se van a guardar los datos del contenedor (izq) y el lado (der) indica en donde se guarda los datos del contenedor.
+La opción `-v` indica se que va a hacer un bid mount
+Se indica en donde se van a guardar los datos del contenedor en la maquina anfitriona (izq) y el lado (der) indica en donde se guarda los datos dentro del contenedor.
+
+Pros:
+Se puede guardar y extraer datos de un contenedor.
+
+Contras:
+Inseguro por acceso a los datos mediante un contenedor. Ejemplo: Si se usa un contenedor en el cual no se conoce bien todo lo que puede hacer.
 
 ```console
 docker run -d --name db -v /home/gabriel/docker-data/mongodata:/data/db mongo
-
 ```
 
 ## Volumenes
 
 ### Crear un volumen
+
+Pros:
+Solo el superusuario puede acceder a los datos.
+No se comparte un directorio como lo hace bid mount. Los volumenes los maneja docker.
+
+Contras:
+Modificar, leer esos archivos desde la maquina anfitriona es un poco complicado a menos de que se entre al contenedor para ver su contenido.
 
 ```console
 docker volume create dbdata
@@ -203,6 +216,14 @@ En **src** se coloca el nombre del volumen que se quiere montar y en **dst** se 
 
 ```console
 docker run -d --name db --mount src=dbdata,dst=/data/db mongo
+```
+
+### Verificar que se realizó el montaje correctamente
+
+En **"Mounts"** debe aparecer su correspondiente información.
+
+```console
+docker inspect db
 ```
 
 ## Insertar y extrar archivos de un contenedor
@@ -235,7 +256,22 @@ docker cp copytest:/testing localtesting #se copia la carpeta testing del conten
 docker image ls
 ```
 
-### Crear una imagen
+### Crear una imagen con dockerfile
+
+```dockerfile
+FROM ubuntu:latest //imagen que se quiere construir
+
+RUN touch /usr/src/hola-mundo.txt // cuando se está construyendo la imagen se ejecuta este comando
+```
+
+`-t` es para agregar un tag.
+`.` es para indicar en donde se va a construir la imagen (mismo directorio en el cual se encuentra el Dockerfile)
+
+```console
+docker build -t ubuntu:hola .
+```
+
+### Crear una imagen con la terminal
 
 Breve descripción de las opciones
 
@@ -245,4 +281,24 @@ Breve descripción de las opciones
 
 ```console
 docker commit -m "tp01" -a "Gabriel Alejandro Mamani" 3141fa004aa0 tp1-completo:v1
+```
+
+### Subir una imagen a docker hub
+
+Loguearse en usando la terminal
+
+```console
+docker login
+```
+
+Retaggear la imagen con nuestro username de dockerhub para poder subirla a nuestro repositorio.
+
+```console
+docker tag postgres:13 gamcode98/postgres:13
+```
+
+Hora de pushear
+
+```console
+docker push gamcode98/postgres:13
 ```
